@@ -1,0 +1,24 @@
+{
+  "build": "h295c915_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "libgcc-ng >=7.5.0"
+  ],
+  "features": "",
+  "fn": "reproc-14.2.4-h295c915_1.conda",
+  "legacy_bz2_md5": "af9fc5ca604f2dff3f5951476e45d573",
+  "legacy_bz2_size": 31513,
+  "license": "MIT",
+  "license_family": "MIT",
+  "md5": "d37ab699a3061cca9958f0a10399019f",
+  "name": "reproc",
+  "sha256": "8824afb4a01f3e3f190fb7c146aec57ca68379337557aae23d5521245392d1d9",
+  "size": 31119,
+  "subdir": "linux-64",
+  "timestamp": 1647441819202,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/reproc-14.2.4-h295c915_1.conda",
+  "version": "14.2.4"
+}

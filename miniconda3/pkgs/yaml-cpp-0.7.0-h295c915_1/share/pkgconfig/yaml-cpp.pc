@@ -1,0 +1,11 @@
+prefix=/tmp/build/80754af9/yaml-cpp-split_1646734639963/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=${exec_prefix}/lib
+
+Name: Yaml-cpp
+Description: A YAML parser and emitter for C++
+Version: 0.7.0
+Requires:
+Libs: -L${libdir} -lyaml-cpp
+Cflags: -I${includedir}

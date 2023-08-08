@@ -1,0 +1,89 @@
+# This file created by conda-build 3.22.0
+# meta.yaml template originally from:
+# /feedstock/recipe, last modified Fri Mar 10 17:11:57 2023
+# ------------------------------------------------
+
+package:
+  name: libxml2
+  version: 2.10.3
+source:
+  sha256: 497f12e34790d407ec9e2a190d576c0881a1cd78ff3c8991d1f9e40281a5ff57
+  url: https://gitlab.gnome.org/GNOME/libxml2/-/archive/v2.10.3/libxml2-v2.10.3.tar.gz
+build:
+  number: '0'
+  run_exports:
+    - libxml2 >=2.10.3,<2.11.0a0
+  string: hcbfbd50_0
+requirements:
+  build:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - _sysroot_linux-64_curr_repodata_hack 3 haa98f57_10
+    - autoconf 2.71 pl5340h5eee18b_0
+    - automake 1.16.5 pl5340h06a4308_1
+    - binutils_impl_linux-64 2.38 h2a08ee3_1
+    - binutils_linux-64 2.38.0 hc2dff05_0
+    - gcc_impl_linux-64 11.2.0 h1234567_1
+    - gcc_linux-64 11.2.0 h5c386dc_0
+    - gdbm 1.18 hd4cb3f1_4
+    - kernel-headers_linux-64 3.10.0 h57e8cba_10
+    - ld_impl_linux-64 2.38 h1181459_1
+    - libgcc-devel_linux-64 11.2.0 h1234567_1
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - libtool 2.4.6 h6a678d5_1009
+    - m4 1.4.18 h4e445db_0
+    - make 4.2.1 h1bed415_1
+    - ncurses 6.4 h6a678d5_0
+    - perl 5.34.0 h5eee18b_2
+    - pkg-config 0.29.2 h1bed415_8
+    - readline 8.2 h5eee18b_0
+    - sysroot_linux-64 2.17 h57e8cba_10
+  host:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - icu 58.2 he6710b0_3
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - xz 5.2.10 h5eee18b_1
+    - zlib 1.2.13 h5eee18b_0
+  run:
+    - icu >=58.2,<59.0a0
+    - libgcc-ng >=11.2.0
+    - xz >=5.2.10,<6.0a0
+    - zlib >=1.2.13,<1.3.0a0
+test:
+  commands:
+    - xmllint test.xml
+  files:
+    - test.xml
+about:
+  description: 'Though libxml2 is written in C a variety of language
+
+    bindings make it available in other environments.
+
+    '
+  dev_url: https://gitlab.gnome.org/GNOME/libxml2/
+  doc_url: https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home
+  home: https://gitlab.gnome.org/GNOME/libxml2/
+  license: MIT
+  license_family: MIT
+  license_file: Copyright
+  summary: The XML C parser and toolkit of Gnome
+extra:
+  copy_test_source_files: true
+  final: true
+  flow_run_id: 1a1c9f6e-6395-4954-b939-f97991e154e5
+  recipe-maintainers:
+    - chenghlee
+    - gillins
+    - jakirkham
+    - jschueller
+    - mingwandroid
+    - msarahan
+    - ocefpaf
+    - scopatz
+  remote_url: git@github.com:AnacondaRecipes/libxml2-feedstock.git
+  sha: de1851b4eeea4b866776502b45ee4b35ceea92e4

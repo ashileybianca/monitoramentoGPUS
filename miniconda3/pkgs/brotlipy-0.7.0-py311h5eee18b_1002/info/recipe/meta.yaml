@@ -1,0 +1,77 @@
+# This file created by conda-build 3.22.0
+# meta.yaml template originally from:
+# /work/aggregate/brotlipy-feedstock/recipe, last modified Mon Feb 13 19:12:11 2023
+# ------------------------------------------------
+
+package:
+  name: brotlipy
+  version: 0.7.0
+source:
+  fn: brotlipy-0.7.0.tar.gz
+  sha256: 36def0b859beaf21910157b4c33eb3b06d8ce459c942102f16988cca6ea164df
+  url: https://pypi.io/packages/source/b/brotlipy/brotlipy-0.7.0.tar.gz
+build:
+  number: '1002'
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  string: py311h5eee18b_1002
+requirements:
+  build:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - _sysroot_linux-64_curr_repodata_hack 3 haa98f57_10
+    - binutils_impl_linux-64 2.38 h2a08ee3_1
+    - binutils_linux-64 2.38.0 hc2dff05_0
+    - gcc_impl_linux-64 11.2.0 h1234567_1
+    - gcc_linux-64 11.2.0 h5c386dc_0
+    - kernel-headers_linux-64 3.10.0 h57e8cba_10
+    - ld_impl_linux-64 2.38 h1181459_1
+    - libgcc-devel_linux-64 11.2.0 h1234567_1
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - sysroot_linux-64 2.17 h57e8cba_10
+  host:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - bzip2 1.0.8 h7b6447c_0
+    - ca-certificates 2023.01.10 h06a4308_0
+    - certifi 2022.12.7 py311h06a4308_0
+    - cffi 1.15.1 py311h5eee18b_3
+    - ld_impl_linux-64 2.38 h1181459_1
+    - libffi 3.4.2 h6a678d5_6
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - libuuid 1.41.5 h5eee18b_0
+    - ncurses 6.4 h6a678d5_0
+    - openssl 1.1.1t h7f8727e_0
+    - pycparser 2.21 pyhd3eb1b0_0
+    - python 3.11.0 h7a1cb2a_2
+    - readline 8.2 h5eee18b_0
+    - setuptools 65.5.0 py311h06a4308_0
+    - sqlite 3.40.1 h5082296_0
+    - tk 8.6.12 h1ccaba5_0
+    - tzdata 2022g h04d1e81_0
+    - xz 5.2.10 h5eee18b_1
+    - zlib 1.2.13 h5eee18b_0
+  run:
+    - cffi >=1.0.0
+    - libgcc-ng >=11.2.0
+    - python >=3.11,<3.12.0a0
+test:
+  imports:
+    - brotli
+about:
+  dev_url: https://github.com/python-hyper/brotlipy
+  home: https://github.com/python-hyper/brotlipy
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Python bindings to the Brotli compression library
+extra:
+  copy_test_source_files: true
+  final: true
+  recipe-maintainers:
+    - astaric
+    - isuruf
+    - primozgodec

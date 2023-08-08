@@ -1,0 +1,31 @@
+{
+  "build": "h251f7ec_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "krb5 >=1.20.1,<1.21.0a0",
+    "libgcc-ng >=11.2.0",
+    "libnghttp2 >=1.52.0",
+    "libnghttp2 >=1.52.0,<2.0a0",
+    "libssh2 >=1.10.0",
+    "libssh2 >=1.10.0,<2.0a0",
+    "openssl >=3.0.8,<4.0a0",
+    "zlib >=1.2.13,<1.3.0a0"
+  ],
+  "features": "",
+  "fn": "libcurl-8.1.1-h251f7ec_1.conda",
+  "legacy_bz2_md5": "f62ba8b1200b896b950417ecdd5e30a2",
+  "legacy_bz2_size": 386701,
+  "license": "curl",
+  "license_family": "MIT",
+  "md5": "bedde4e8ad914fcc92af81192c259a75",
+  "name": "libcurl",
+  "sha256": "77463148005411724a3e3190e6221872714bb240776a4a0688e8e1edff369496",
+  "size": 406842,
+  "subdir": "linux-64",
+  "timestamp": 1686948390683,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/libcurl-8.1.1-h251f7ec_1.conda",
+  "version": "8.1.1"
+}

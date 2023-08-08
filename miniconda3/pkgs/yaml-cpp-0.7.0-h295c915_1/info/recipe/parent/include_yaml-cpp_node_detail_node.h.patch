@@ -1,0 +1,11 @@
+--- yaml-cpp_0.7.0.orig/include/yaml-cpp/node/detail/node.h	2022-02-28 16:33:49.164735965 -0700
++++ yaml-cpp_0.7.0-dll_test_fix/include/yaml-cpp/node/detail/node.h	2022-02-28 17:16:17.043610192 -0700
+@@ -169,7 +169,7 @@
+   using nodes = std::set<node*, less>;
+   nodes m_dependencies;
+   size_t m_index;
+-  static std::atomic<size_t> m_amount;
++  static YAML_CPP_API std::atomic<size_t> m_amount;
+ };
+ }  // namespace detail
+ }  // namespace YAML

@@ -1,0 +1,25 @@
+{
+  "build": "py311h06a4308_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "conda-package-streaming >=0.7.0",
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "conda-package-handling-2.1.0-py311h06a4308_0.conda",
+  "legacy_bz2_md5": "c8b5d590f8ef8ab6057ab3ee4f75655e",
+  "legacy_bz2_size": 288727,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "f11d8c4fd4665ac2383e0cb4ed2bafb0",
+  "name": "conda-package-handling",
+  "sha256": "3859d2e62d9551cdd192343d0fa2354f103c60be7bb719269e564f5bb62f743f",
+  "size": 286663,
+  "subdir": "linux-64",
+  "timestamp": 1685024890730,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/conda-package-handling-2.1.0-py311h06a4308_0.conda",
+  "version": "2.1.0"
+}

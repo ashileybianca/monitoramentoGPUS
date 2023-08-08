@@ -1,0 +1,351 @@
+{
+  "paths": [
+    {
+      "_path": "bin/conda2solv",
+      "path_type": "hardlink",
+      "sha256": "9ab40d4004c7e4818ef1840d98901652bb22d7f414f3aa15b17cdc8378a4281d",
+      "size_in_bytes": 21480
+    },
+    {
+      "_path": "bin/dumpsolv",
+      "path_type": "hardlink",
+      "sha256": "aa9a55c0ecf1976ae40b26c89774eac0becdbeb6b3f4b8cbab24354b53b291ad",
+      "size_in_bytes": 26152
+    },
+    {
+      "_path": "bin/installcheck",
+      "path_type": "hardlink",
+      "sha256": "ab18474f1012178fe025d0402d23574af48c643996bedd77039edacaaef32657",
+      "size_in_bytes": 25888
+    },
+    {
+      "_path": "bin/mergesolv",
+      "path_type": "hardlink",
+      "sha256": "7ec80d23523774137e19096e6fa6c17a1b41d46c72c935091c83ca7cabd5f01e",
+      "size_in_bytes": 21656
+    },
+    {
+      "_path": "bin/repo2solv",
+      "path_type": "hardlink",
+      "sha256": "8da82282bb35e551575953b86b4107dc080bad0198ca87f8be0bd27764def6ec",
+      "size_in_bytes": 22280
+    },
+    {
+      "_path": "bin/testsolv",
+      "path_type": "hardlink",
+      "sha256": "5624873644fa8dcd2379e6c85dbd3277c054766369ce0c696c9d3cdb2593a9bf",
+      "size_in_bytes": 22624
+    },
+    {
+      "_path": "include/solv/bitmap.h",
+      "path_type": "hardlink",
+      "sha256": "b3fa6d991875e1a2b2800c854697c722580ab6802c9d3840e302382b0fce919e",
+      "size_in_bytes": 1555
+    },
+    {
+      "_path": "include/solv/chksum.h",
+      "path_type": "hardlink",
+      "sha256": "55602f07eb12c868ef3a3b0a580db3255738432a6edd0a47b5c0637a3c8eedd3",
+      "size_in_bytes": 1190
+    },
+    {
+      "_path": "include/solv/conda.h",
+      "path_type": "hardlink",
+      "sha256": "73743479ac4ca9b480f0ff8b3295477ff206f3db835cbb4ba26e744e7a4f6fa2",
+      "size_in_bytes": 523
+    },
+    {
+      "_path": "include/solv/dataiterator.h",
+      "path_type": "hardlink",
+      "sha256": "1435f5c9c1e7ed1936de504c2b332c888c87458f1bd7351a7b39f52c600107f0",
+      "size_in_bytes": 5106
+    },
+    {
+      "_path": "include/solv/dirpool.h",
+      "path_type": "hardlink",
+      "sha256": "ca20c07c0b5e6ccf6b4380463de9f1420251906eed00746c96b95ccaf04dcf8a",
+      "size_in_bytes": 1712
+    },
+    {
+      "_path": "include/solv/evr.h",
+      "path_type": "hardlink",
+      "sha256": "629da0ed74bdc88c0d766843a15f1c21502dc1b62842f3e2067b26fed889bc99",
+      "size_in_bytes": 815
+    },
+    {
+      "_path": "include/solv/hash.h",
+      "path_type": "hardlink",
+      "sha256": "3741802a625392b70befc4c26c4cf314354104dbcda9ef7ae38eabe06512b451",
+      "size_in_bytes": 1604
+    },
+    {
+      "_path": "include/solv/knownid.h",
+      "path_type": "hardlink",
+      "sha256": "18aae3697e90ade8837769982426292685e0a98403721d299763ea6608c05ae7",
+      "size_in_bytes": 13942
+    },
+    {
+      "_path": "include/solv/policy.h",
+      "path_type": "hardlink",
+      "sha256": "d945789cd68d4bafc46fd16564ba6d28affd785ef70bb8d643731501b75cb2a9",
+      "size_in_bytes": 1740
+    },
+    {
+      "_path": "include/solv/pool.h",
+      "path_type": "hardlink",
+      "sha256": "5c2360093a1b8e35b604abe32a2cbe5ace5408ce1d126e8183bb4a07cd357b0f",
+      "size_in_bytes": 14040
+    },
+    {
+      "_path": "include/solv/poolarch.h",
+      "path_type": "hardlink",
+      "sha256": "9849f634990237148e37b5c6daa8b82421bbfe0bc9de383e562133b8c26bd751",
+      "size_in_bytes": 1242
+    },
+    {
+      "_path": "include/solv/poolid.h",
+      "path_type": "hardlink",
+      "sha256": "c7c111d28e711e67cf93a756b886207418c09e7ddd6b475c28c9a122a93c97f9",
+      "size_in_bytes": 1188
+    },
+    {
+      "_path": "include/solv/pooltypes.h",
+      "path_type": "hardlink",
+      "sha256": "0f9f861bd31c8096a954e25077ae88c81fcac728d957aa267e6729e2f14246ce",
+      "size_in_bytes": 1015
+    },
+    {
+      "_path": "include/solv/poolvendor.h",
+      "path_type": "hardlink",
+      "sha256": "041cc351042f17c1d94bec538492f06e877d21720eb1da3f570a987849d35658",
+      "size_in_bytes": 499
+    },
+    {
+      "_path": "include/solv/problems.h",
+      "path_type": "hardlink",
+      "sha256": "828f69130b3869785c1ace6543d14db3b2c975555dd2e0ef01faef765f93b2db",
+      "size_in_bytes": 2150
+    },
+    {
+      "_path": "include/solv/queue.h",
+      "path_type": "hardlink",
+      "sha256": "3b9d3e41ae15c3643a5c45de1498b9c719eba36cb5377ef94d2d211fdc9ddca6",
+      "size_in_bytes": 2469
+    },
+    {
+      "_path": "include/solv/repo.h",
+      "path_type": "hardlink",
+      "sha256": "1725255624fbb6521e3c74271b88d9d5016e55082f4ae22431506228f9be269f",
+      "size_in_bytes": 8039
+    },
+    {
+      "_path": "include/solv/repo_conda.h",
+      "path_type": "hardlink",
+      "sha256": "1f2c0dafec8ea3c95589078bf72635ae0ac1494ce054a1a2a05032172fa4886f",
+      "size_in_bytes": 244
+    },
+    {
+      "_path": "include/solv/repo_solv.h",
+      "path_type": "hardlink",
+      "sha256": "f80c429f1b3f1fbc6d0c7a8068d7746dbad1c327c6290e1a03f1234bc18a4a46",
+      "size_in_bytes": 557
+    },
+    {
+      "_path": "include/solv/repo_write.h",
+      "path_type": "hardlink",
+      "sha256": "c6c5cf3ee8c8cb9361fd3e76d52da2f9117c61c70a8c3b9535656749620d0bc7",
+      "size_in_bytes": 1973
+    },
+    {
+      "_path": "include/solv/repodata.h",
+      "path_type": "hardlink",
+      "sha256": "621d5d837b8f50dc3295368ac1d81e11084a34cb744cf3d6b5f8138852f364df",
+      "size_in_bytes": 12213
+    },
+    {
+      "_path": "include/solv/rules.h",
+      "path_type": "hardlink",
+      "sha256": "6b58abb489cf2571b86db3ed79f6f4ee4fa7025c1d7e276d887844d422b81825",
+      "size_in_bytes": 6224
+    },
+    {
+      "_path": "include/solv/selection.h",
+      "path_type": "hardlink",
+      "sha256": "2aab66c59706f46bc1575c32d0163f838abf71b895248eb1eb3f862d4ccc4a88",
+      "size_in_bytes": 2612
+    },
+    {
+      "_path": "include/solv/solv_xfopen.h",
+      "path_type": "hardlink",
+      "sha256": "60c1fb8f156934540598405645269f6c92969b98c121276cda12a9696a5e4b8b",
+      "size_in_bytes": 553
+    },
+    {
+      "_path": "include/solv/solvable.h",
+      "path_type": "hardlink",
+      "sha256": "1cf167edad462ca37aa0f93ea5f7cbbd265ca0cd66a846e2ecdf474eab0d5f5c",
+      "size_in_bytes": 3964
+    },
+    {
+      "_path": "include/solv/solver.h",
+      "path_type": "hardlink",
+      "sha256": "a730c97a77bc3ff87f6f29af0ddcab240687d8189995b3396428d25b67884b3b",
+      "size_in_bytes": 16416
+    },
+    {
+      "_path": "include/solv/solverdebug.h",
+      "path_type": "hardlink",
+      "sha256": "5637cc7d15d39a5b17321c766fb52946d9c4fe9c0201f5ffec314272bd67e56b",
+      "size_in_bytes": 1269
+    },
+    {
+      "_path": "include/solv/solvversion.h",
+      "path_type": "hardlink",
+      "sha256": "09edc3042bd180444334964854a9f3d7858b10d2105757129167ca7d5e76d36f",
+      "size_in_bytes": 1653
+    },
+    {
+      "_path": "include/solv/strpool.h",
+      "path_type": "hardlink",
+      "sha256": "7ff36f90d02702132563f4b56dbe1742ca5b638da28d9b1c80a138ed162d4e4a",
+      "size_in_bytes": 1477
+    },
+    {
+      "_path": "include/solv/testcase.h",
+      "path_type": "hardlink",
+      "sha256": "977200986737dbc4b1a334eca4e64c0b0400f13d37f1a4c4de0063a8fede7160",
+      "size_in_bytes": 2124
+    },
+    {
+      "_path": "include/solv/tools_util.h",
+      "path_type": "hardlink",
+      "sha256": "40f18645bd32235a42d0247a088c17428172f423473931e58638dc16e51e0d79",
+      "size_in_bytes": 1642
+    },
+    {
+      "_path": "include/solv/transaction.h",
+      "path_type": "hardlink",
+      "sha256": "91278d66126775d89b42d836563a767fb5f30698d86af1f10e42eba992f4cc26",
+      "size_in_bytes": 4867
+    },
+    {
+      "_path": "include/solv/util.h",
+      "path_type": "hardlink",
+      "sha256": "7d6a53f5dd6e00ee916dc5cd7fce0477f8dc8b4bde71081c713df56341f14617",
+      "size_in_bytes": 3141
+    },
+    {
+      "_path": "lib/libsolv.so",
+      "path_type": "softlink",
+      "sha256": "b34e02f3dde000c08c29d1498eb07998fd44c5e04618222fb66ebb6ab768137e",
+      "size_in_bytes": 675952
+    },
+    {
+      "_path": "lib/libsolv.so.1",
+      "path_type": "hardlink",
+      "sha256": "b34e02f3dde000c08c29d1498eb07998fd44c5e04618222fb66ebb6ab768137e",
+      "size_in_bytes": 675952
+    },
+    {
+      "_path": "lib/libsolvext.so",
+      "path_type": "softlink",
+      "sha256": "e3133b4c7364cc43b722eb6c7d5b4c717df6252e885422e69c271e67c0d91a21",
+      "size_in_bytes": 107936
+    },
+    {
+      "_path": "lib/libsolvext.so.1",
+      "path_type": "hardlink",
+      "sha256": "e3133b4c7364cc43b722eb6c7d5b4c717df6252e885422e69c271e67c0d91a21",
+      "size_in_bytes": 107936
+    },
+    {
+      "_path": "lib/pkgconfig/libsolv.pc",
+      "file_mode": "text",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/croot/libsolv-suite_1666304498609/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+      "sha256": "71ebd4a70f78ee8dde7c2c1e30b29201907214e83328117aa6c662f4553f201f",
+      "size_in_bytes": 664
+    },
+    {
+      "_path": "lib/pkgconfig/libsolvext.pc",
+      "file_mode": "text",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/croot/libsolv-suite_1666304498609/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pla",
+      "sha256": "7dbb3350a42740e939079b8407a6b9476d749396d537f1e32e43308b133ec4c3",
+      "size_in_bytes": 692
+    },
+    {
+      "_path": "share/cmake/Modules/FindLibSolv.cmake",
+      "path_type": "hardlink",
+      "sha256": "2f81f106b402b02fb6486878eed2481db01c61075b725d59e5f65dc301f72802",
+      "size_in_bytes": 3182
+    },
+    {
+      "_path": "share/man/man1/dumpsolv.1",
+      "path_type": "hardlink",
+      "sha256": "5c4181b65d0b35f82845035cc53dbd15b20e1020e499fcce3c8ae6b68c2ffa2e",
+      "size_in_bytes": 1618
+    },
+    {
+      "_path": "share/man/man1/installcheck.1",
+      "path_type": "hardlink",
+      "sha256": "a96dcb2fdec31c87dd9c8b9f24e66fce9233939bdfee2a08c1b5247a190152e2",
+      "size_in_bytes": 2024
+    },
+    {
+      "_path": "share/man/man1/mergesolv.1",
+      "path_type": "hardlink",
+      "sha256": "a391bdb50abab0a1448707ef5597bb33252b4e1d8b512f7e69a98eddf1992b4d",
+      "size_in_bytes": 1645
+    },
+    {
+      "_path": "share/man/man1/repo2solv.1",
+      "path_type": "hardlink",
+      "sha256": "17a11568cc36a863433bf080729669b33d573ac44f1c0e06217bc574fd050995",
+      "size_in_bytes": 2448
+    },
+    {
+      "_path": "share/man/man1/solv.1",
+      "path_type": "hardlink",
+      "sha256": "1092a5fe6d1408eab08e98a7974f3d4c6b315a97cadbd2915d0ccff67208fb32",
+      "size_in_bytes": 2900
+    },
+    {
+      "_path": "share/man/man1/testsolv.1",
+      "path_type": "hardlink",
+      "sha256": "4248757bae7ff2c8446c72882448b4b967f3af29318dcffa17ad290e8fced967",
+      "size_in_bytes": 2296
+    },
+    {
+      "_path": "share/man/man3/libsolv-bindings.3",
+      "path_type": "hardlink",
+      "sha256": "b17691d88b5a2fae85ff5aa37af9bafdae3467c33f4cc06e12e68a66298ecb07",
+      "size_in_bytes": 174512
+    },
+    {
+      "_path": "share/man/man3/libsolv-constantids.3",
+      "path_type": "hardlink",
+      "sha256": "217f140750416a9c4c6b72fb5fa86fd29770feadae3633f02b25f692eb89fe7f",
+      "size_in_bytes": 27211
+    },
+    {
+      "_path": "share/man/man3/libsolv-history.3",
+      "path_type": "hardlink",
+      "sha256": "0723ea962c38f4778ce27d83df0c4b076b81f9327594eee2d8c9e19d3a230b07",
+      "size_in_bytes": 7170
+    },
+    {
+      "_path": "share/man/man3/libsolv-pool.3",
+      "path_type": "hardlink",
+      "sha256": "666573df4c2fe4c5982e63cb9c595404e9d1c841a51e64930a7bcd45f4ff8873",
+      "size_in_bytes": 44348
+    },
+    {
+      "_path": "share/man/man3/libsolv.3",
+      "path_type": "hardlink",
+      "sha256": "58403e02a12b1084ab17cf114bf6482815a3f3eaaea56a5ab85ffc10399c90bb",
+      "size_in_bytes": 3103
+    }
+  ],
+  "paths_version": 1
+}

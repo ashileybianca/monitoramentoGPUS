@@ -1,0 +1,109 @@
+# This file created by conda-build 3.22.0
+# ------------------------------------------------
+
+package:
+  name: libsolv
+  version: 0.7.22
+source:
+  patches:
+    - conda_variant_priorization.patch
+    - pcre2-compat.patch
+  sha256: 968aef452b5493751fa0168cd58745a77c755e202a43fe8d549d791eb16034d5
+  url: https://github.com/openSUSE/libsolv/archive/0.7.22.tar.gz
+build:
+  noarch: false
+  noarch_python: false
+  number: '0'
+  script: install.sh
+  string: he621ea3_0
+requirements:
+  build:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - _sysroot_linux-64_curr_repodata_hack 3 haa98f57_10
+    - binutils_impl_linux-64 2.38 h2a08ee3_1
+    - binutils_linux-64 2.38.0 hc2dff05_0
+    - bzip2 1.0.8 h7b6447c_0
+    - c-ares 1.18.1 h7f8727e_0
+    - ca-certificates 2022.07.19 h06a4308_0
+    - cmake 3.22.1 h1fce559_0
+    - expat 2.4.9 h6a678d5_0
+    - gcc_impl_linux-64 11.2.0 h1234567_1
+    - gcc_linux-64 11.2.0 h5c386dc_0
+    - gxx_impl_linux-64 11.2.0 h1234567_1
+    - gxx_linux-64 11.2.0 hc2dff05_0
+    - kernel-headers_linux-64 3.10.0 h57e8cba_10
+    - krb5 1.19.2 hac12032_0
+    - ld_impl_linux-64 2.38 h1181459_1
+    - libcurl 7.84.0 h91b91d3_0
+    - libedit 3.1.20210910 h7f8727e_0
+    - libev 4.33 h7f8727e_1
+    - libffi 3.3 he6710b0_2
+    - libgcc-devel_linux-64 11.2.0 h1234567_1
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libnghttp2 1.46.0 hce63b2e_0
+    - libssh2 1.10.0 h8f2d780_0
+    - libstdcxx-devel_linux-64 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - libuuid 1.0.3 h7f8727e_2
+    - libuv 1.40.0 h7b6447c_0
+    - lz4-c 1.9.3 h295c915_1
+    - ncurses 6.3 h5eee18b_3
+    - ninja 1.10.2 h06a4308_5
+    - ninja-base 1.10.2 hd09550d_5
+    - openssl 1.1.1q h7f8727e_0
+    - python 3.10.6 haa1d7c7_0
+    - readline 8.1.2 h7f8727e_1
+    - rhash 1.4.1 h3c74f83_1
+    - sqlite 3.39.3 h5082296_0
+    - sysroot_linux-64 2.17 h57e8cba_10
+    - tk 8.6.12 h1ccaba5_0
+    - tzdata 2022e h04d1e81_0
+    - xz 5.2.6 h5eee18b_0
+    - zlib 1.2.12 h5eee18b_3
+    - zstd 1.5.2 ha4553b6_0
+  host:
+    - _libgcc_mutex 0.1 main
+    - _openmp_mutex 5.1 1_gnu
+    - bzip2 1.0.8 h7b6447c_0
+    - libgcc-ng 11.2.0 h1234567_1
+    - libgomp 11.2.0 h1234567_1
+    - libstdcxx-ng 11.2.0 h1234567_1
+    - pcre2 10.37 he7ceb23_1
+    - pkg-config 0.29.2 h1bed415_8
+    - zlib 1.2.12 h5eee18b_3
+  run:
+    - libgcc-ng >=11.2.0
+    - libstdcxx-ng >=11.2.0
+    - pcre2 >=10.37,<10.38.0a0
+    - zlib >=1.2.12,<1.3.0a0
+test:
+  commands:
+    - test -f ${PREFIX}/lib/libsolv${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libsolvext${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/libsolv.so.1
+    - test -f ${PREFIX}/include/solv/repo.h
+    - dumpsolv -h
+about:
+  description: libsolv, a free package dependency solver using a satisfiability algorithm.
+  dev_url: https://github.com/openSUSE/libsolv
+  doc_src_url: https://github.com/openSUSE/libsolv/tree/master/doc
+  doc_url: https://github.com/openSUSE/libsolv/tree/master/doc
+  home: https://github.com/openSUSE/libsolv
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE.BSD
+  summary: Library for solving packages and reading repositories
+extra:
+  copy_test_source_files: true
+  final: true
+  flow_run_id: 0c593847-c4ee-4b39-8bb0-10d3f6c61081
+  recipe-maintainers:
+    - JohanMabille
+    - SylvainCorlay
+    - adriendelsalle
+    - davidbrochart
+    - wolfv
+  remote_url: git@github.com:AnacondaRecipes/libsolv-feedstock.git
+  sha: 0348445259cdf38fc8830e75f23a803cf248f58c

@@ -1,0 +1,143 @@
+{
+  "paths": [
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/INSTALLER",
+      "path_type": "hardlink",
+      "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+      "size_in_bytes": 5
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/LICENSE",
+      "path_type": "hardlink",
+      "sha256": "58f39270ef88f5aa09817a24fc379b35937e3d986d075df18b55aa5348aaad66",
+      "size_in_bytes": 2670
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/METADATA",
+      "path_type": "hardlink",
+      "sha256": "858f39fcceea6e107df555143e0caa516a86089ddd619438ec5b9397bb425af5",
+      "size_in_bytes": 4491
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/RECORD",
+      "path_type": "hardlink",
+      "sha256": "2ba11bcc63d3aa97084faeee75aad28e0dab028cd7fb6421a2940bcbd7d7a11e",
+      "size_in_bytes": 1938
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/REQUESTED",
+      "path_type": "hardlink",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_in_bytes": 0
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/WHEEL",
+      "path_type": "hardlink",
+      "sha256": "ad282afc9a4717d7c7475971e77ab083fd7ed8bca9644fea99cb976d552af78f",
+      "size_in_bytes": 81
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming-0.8.0.dist-info/direct_url.json",
+      "path_type": "hardlink",
+      "sha256": "4af3c8e77aba295af56dcf80f7aa8fe1ac868a2a2e4329fd8035414737f8388f",
+      "size_in_bytes": 83
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__init__.py",
+      "path_type": "hardlink",
+      "sha256": "88f95809c233bb35bb4f61ca0e499894c911239d5d04b7cd4713cf896adfc3d5",
+      "size_in_bytes": 22
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/__init__.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "abeb2e7b34341a8ca7b537fde132b5bc2633e09b10f8724bef298c0d5e7e2d3f",
+      "size_in_bytes": 193
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/exceptions.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "8e72852d3c93fa7913daf0d003a77b47fd3a2e532a2b7f57e8ced83d0f86fe43",
+      "size_in_bytes": 1730
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/extract.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "06bfaba9eead3fa07e44fdda1c709b9b51913ae2af51cdfac232950bb28db681",
+      "size_in_bytes": 3928
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/lazy_wheel.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "424deca393e2eaa3ca849a64b038ffa79006e73067d581f5510328a5af500099",
+      "size_in_bytes": 14438
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/package_streaming.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "e88ec063bb9c40dbecccc44ea05d44f3df05c221f46f1ceac10be7d192d5e198",
+      "size_in_bytes": 5979
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/s3.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "b2c8e30d6d062737c001cc440dd4e22ccae8206c8668eb43980c02443e874f7d",
+      "size_in_bytes": 4657
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/transmute.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "5bc3c036278e51c59e53b10cdb1f6498e2f413586a5d3f3a6a5b79a3ad391968",
+      "size_in_bytes": 9166
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/__pycache__/url.cpython-311.pyc",
+      "path_type": "hardlink",
+      "sha256": "e2235e59f95ea659be40415c9ffd8f3e19bb1d7a2b043f8db372d48a242ef935",
+      "size_in_bytes": 4230
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/exceptions.py",
+      "path_type": "hardlink",
+      "sha256": "edf1b808db6e9244915801a1f598360c2364870fb0368f8e8b7e5cda37f456c4",
+      "size_in_bytes": 677
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/extract.py",
+      "path_type": "hardlink",
+      "sha256": "aae601ba1440e1339d0af1171723d764a64eb89701bdacdd41f2fc9d09e162e9",
+      "size_in_bytes": 2538
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/lazy_wheel.py",
+      "path_type": "hardlink",
+      "sha256": "7aa12d7f3a100960bc95cd703733ad45f39396a1e75147386f9325952dced56d",
+      "size_in_bytes": 9449
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/package_streaming.py",
+      "path_type": "hardlink",
+      "sha256": "cac76034c8718fc7c4f39531113b73dfea1339b7f9afb35ff53c9974187f29b9",
+      "size_in_bytes": 3733
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/s3.py",
+      "path_type": "hardlink",
+      "sha256": "ca09b9f7048fa62c6fc243b842a4a0bda94d523024d45cc45d6d09363e397202",
+      "size_in_bytes": 2286
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/transmute.py",
+      "path_type": "hardlink",
+      "sha256": "fa39ba63016fac291ca6aa6a4117676c621a7223723252b1ac3d0393fe7f1305",
+      "size_in_bytes": 5663
+    },
+    {
+      "_path": "lib/python3.11/site-packages/conda_package_streaming/url.py",
+      "path_type": "hardlink",
+      "sha256": "582a5ef34e3c17d85bfc181946534cbd5c8cba02cd6edcb632569d463bebbe6a",
+      "size_in_bytes": 2707
+    }
+  ],
+  "paths_version": 1
+}

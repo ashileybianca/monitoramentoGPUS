@@ -1,0 +1,29 @@
+{
+  "build": "py311h9ce1e76_2",
+  "build_number": 2,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [
+    "pyopenssl >=23.0.0"
+  ],
+  "depends": [
+    "cffi >=1.12",
+    "libgcc-ng",
+    "openssl 3.*",
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "cryptography-39.0.1-py311h9ce1e76_2.conda",
+  "legacy_bz2_md5": "a420ed5febbb3f3d7a0718e2810a521e",
+  "legacy_bz2_size": 1646540,
+  "license": "(BSD-3-Clause OR Apache-2.0) AND PSF-2.0 AND MIT",
+  "license_family": "BSD",
+  "md5": "d41c6fe5f4dd205e8b0dc1ec47c56a96",
+  "name": "cryptography",
+  "sha256": "87f05aa3869bcf4579adabb616417e198c9d0332d9c422b97fcaafe343c145f1",
+  "size": 1564522,
+  "subdir": "linux-64",
+  "timestamp": 1686614215799,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/cryptography-39.0.1-py311h9ce1e76_2.conda",
+  "version": "39.0.1"
+}

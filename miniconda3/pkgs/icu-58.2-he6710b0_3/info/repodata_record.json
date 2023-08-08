@@ -1,0 +1,24 @@
+{
+  "build": "he6710b0_3",
+  "build_number": 3,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "libgcc-ng >=7.3.0",
+    "libstdcxx-ng >=7.3.0"
+  ],
+  "features": "",
+  "fn": "icu-58.2-he6710b0_3.conda",
+  "legacy_bz2_md5": "9213e0336e3a5216c989cfe52648412e",
+  "legacy_bz2_size": 23805906,
+  "license": "MIT",
+  "md5": "48cc14d5ad1a9bcd8dac17211a8deb8b",
+  "name": "icu",
+  "sha256": "fdf7a480fcb598d164cbd28d3ce015d7de52db30f76faf7a15fbb8bbc7b8c5af",
+  "size": 11012106,
+  "subdir": "linux-64",
+  "timestamp": 1588026213084,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/icu-58.2-he6710b0_3.conda",
+  "version": "58.2"
+}

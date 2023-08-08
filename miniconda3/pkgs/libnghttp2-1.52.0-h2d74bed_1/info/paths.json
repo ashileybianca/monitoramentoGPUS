@@ -1,0 +1,63 @@
+{
+  "paths": [
+    {
+      "_path": "bin/nghttp",
+      "path_type": "hardlink",
+      "sha256": "2b3ab9b1772c1d4ca3e482eb09774b928e59b38a6adfbf1208e45f749e216bbd",
+      "size_in_bytes": 254336
+    },
+    {
+      "_path": "bin/nghttpd",
+      "path_type": "hardlink",
+      "sha256": "9712a71395df942a43fbe2d53795547feb3b57359a2332918ea6c60712083b68",
+      "size_in_bytes": 188568
+    },
+    {
+      "_path": "bin/nghttpx",
+      "file_mode": "binary",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/croot/nghttp2_1686931224231/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "474131d833e32f55a370878b7d3ac7026c491b3326bb98924e94d1d855a892c9",
+      "size_in_bytes": 1281624
+    },
+    {
+      "_path": "include/nghttp2/nghttp2.h",
+      "path_type": "hardlink",
+      "sha256": "0d1d48c9ea099a6f4dbe39491b9c0f68f2c2a4b99898e568da34f59a9017029e",
+      "size_in_bytes": 204305
+    },
+    {
+      "_path": "include/nghttp2/nghttp2ver.h",
+      "path_type": "hardlink",
+      "sha256": "2d15c1e5af4dc51d1cb7edc342c5f4bae8448c9cae78a2447cb9f9221e771603",
+      "size_in_bytes": 1605
+    },
+    {
+      "_path": "lib/libnghttp2.so",
+      "path_type": "softlink",
+      "sha256": "fb527e36423b6f5871d98080d1df8022b73ff546fb79ae91e210a4cdd52e930f",
+      "size_in_bytes": 203576
+    },
+    {
+      "_path": "lib/libnghttp2.so.14",
+      "path_type": "softlink",
+      "sha256": "fb527e36423b6f5871d98080d1df8022b73ff546fb79ae91e210a4cdd52e930f",
+      "size_in_bytes": 203576
+    },
+    {
+      "_path": "lib/libnghttp2.so.14.24.1",
+      "path_type": "hardlink",
+      "sha256": "fb527e36423b6f5871d98080d1df8022b73ff546fb79ae91e210a4cdd52e930f",
+      "size_in_bytes": 203576
+    },
+    {
+      "_path": "lib/pkgconfig/libnghttp2.pc",
+      "file_mode": "text",
+      "path_type": "hardlink",
+      "prefix_placeholder": "/croot/nghttp2_1686931224231/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold",
+      "sha256": "f2324dd3d5c0b9567866ad3944ef1b13e8131ec727e4b36c126df069f3158470",
+      "size_in_bytes": 1633
+    }
+  ],
+  "paths_version": 1
+}

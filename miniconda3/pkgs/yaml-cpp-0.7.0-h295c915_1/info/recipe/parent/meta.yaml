@@ -1,0 +1,95 @@
+{% set version = "0.7.0" %}
+{% set hash = "43e6a9fcb146ad871515f0d0873947e5d497a1c9c60c58cb102a97b47208b7c3" %}
+{% set build_number = "1" %}
+
+package:
+  name: yaml-cpp-split
+  version: {{ version }}
+
+source:
+  url: https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-{{ version }}.tar.gz
+  sha256: {{ hash }}
+  patches:
+    # These patches fix a shared object issue in `0.7.0`. This is
+    # currently fixed in `master`, so future updates should not need
+    # them.
+    - include_yaml-cpp_dll.h.patch               # [win]
+    - include_yaml-cpp_node_detail_node.h.patch  # [win]
+    # Fix a defect in the cmake config file.
+    - yaml-cpp-config.cmake.in.patch
+
+build:
+  number: {{ build_number }}
+
+requirements:
+  build:
+    - patch     # [unix]
+    - m2-patch  # [win]
+
+outputs:
+  - name: yaml-cpp
+    script: build_shared.sh  # [not win]
+    script: bld_shared.bat   # [win]
+    build:
+      run_exports:
+        - {{ pin_subpackage('yaml-cpp', max_pin='x.x') }}
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+    test:
+      # NOTE: Author's tests are run from the build scripts in all architectures.
+      files:
+        - test
+      requires:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      commands:
+        # These tests ensure the library is in its expected location.
+        - test -f $PREFIX/lib/libyaml-cpp.so              # [not (osx or win)]
+        - test -f $PREFIX/lib/libyaml-cpp.dylib           # [osx]
+        - if not exist %LIBRARY_BIN%\\yaml-cpp.dll exit 1 # [win]
+        # These tests ensure a simple program can be built using the
+        # library. They are not altogether necessary, though they are
+        # nice to have.
+        - test/test.sh   # [not win]
+        - test/test.bat  # [win]
+
+  - name: yaml-cpp-static
+    script: build_static.sh  # [not win]
+    build:
+      skip: true  # [win]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      host:
+        - {{ pin_subpackage('yaml-cpp', exact=True) }}
+      run:
+        - {{ pin_subpackage('yaml-cpp', exact=True) }}
+    test:
+      commands:
+        - test -f $PREFIX/lib/libyaml-cpp.a  # [not win]
+
+about:
+  home: https://github.com/jbeder/yaml-cpp
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: yaml-cpp is a YAML parser and emitter in C++ matching the YAML 1.2 spec.
+  dev_url: https://github.com/jbeder/yaml-cpp
+  doc_url: https://github.com/jbeder/yaml-cpp.wiki.git
+
+extra:
+  recipe-maintainers:
+    - allanleal
+    - marcelotrevisani
+    - tadeu
+    - seanyen
+    - wolfv

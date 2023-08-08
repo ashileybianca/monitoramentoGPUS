@@ -1,0 +1,8 @@
+{
+  "c_compiler": "gcc",
+  "bzip2": "1.0",
+  "target_platform": "linux-64",
+  "channel_targets": "defaults",
+  "c_compiler_version": "7.5.0",
+  "zlib": "1.2"
+}

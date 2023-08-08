@@ -1,0 +1,25 @@
+{
+  "build": "py311h06a4308_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "cryptography >=38.0.0,<40",
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "pyopenssl-23.0.0-py311h06a4308_0.conda",
+  "legacy_bz2_md5": "e8e863853122726cc50b425ee26af8f3",
+  "legacy_bz2_size": 113885,
+  "license": "Apache-2.0",
+  "license_family": "Apache",
+  "md5": "3ba9d6d2f74e89aa80e5bae3966f3a43",
+  "name": "pyopenssl",
+  "sha256": "8a6259e4fd9573aad3d763c8bf9c8f3319f7fc7cc3297ec613f02be41261ed27",
+  "size": 124725,
+  "subdir": "linux-64",
+  "timestamp": 1678965327040,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/pyopenssl-23.0.0-py311h06a4308_0.conda",
+  "version": "23.0.0"
+}

@@ -1,0 +1,24 @@
+{
+  "build": "py311h06a4308_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "toolz-0.12.0-py311h06a4308_0.conda",
+  "legacy_bz2_md5": "32ee4723173f1fad5563b8afb5f1c8f1",
+  "legacy_bz2_size": 135634,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "c1fbef357130d8520fabf9897acac572",
+  "name": "toolz",
+  "sha256": "e9a94c4e5f31f4fc3fbe73399a90adc8e3aa266433d51572c798471c6a55dbc6",
+  "size": 138509,
+  "subdir": "linux-64",
+  "timestamp": 1676827536101,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/toolz-0.12.0-py311h06a4308_0.conda",
+  "version": "0.12.0"
+}

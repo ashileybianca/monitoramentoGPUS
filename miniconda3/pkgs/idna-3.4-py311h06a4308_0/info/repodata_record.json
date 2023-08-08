@@ -1,0 +1,24 @@
+{
+  "build": "py311h06a4308_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "idna-3.4-py311h06a4308_0.conda",
+  "legacy_bz2_md5": "c4aa1c5005412821f81fa13e4cd78514",
+  "legacy_bz2_size": 123676,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "ace9494db4d1927c447dc6f81bc95f0a",
+  "name": "idna",
+  "sha256": "9b03a645e8b6e53045d69b1c0b387f0710012c836991cb03e0f17a8041fd296b",
+  "size": 98558,
+  "subdir": "linux-64",
+  "timestamp": 1676822710633,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/idna-3.4-py311h06a4308_0.conda",
+  "version": "3.4"
+}

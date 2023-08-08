@@ -1,0 +1,26 @@
+{
+  "build": "he7ceb23_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "bzip2 >=1.0.8,<2.0a0",
+    "libgcc-ng >=7.5.0",
+    "zlib >=1.2.11,<1.3.0a0"
+  ],
+  "features": "",
+  "fn": "pcre2-10.37-he7ceb23_1.conda",
+  "legacy_bz2_md5": "e4045830821b30220cde347dff25e772",
+  "legacy_bz2_size": 1149759,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "e79f09bd40e513df54e51d6722245ab9",
+  "name": "pcre2",
+  "sha256": "f2662b141a2f8ca5958b86e8cb918e0df34cca14f51f1af4aaaee63a1a0e668f",
+  "size": 859233,
+  "subdir": "linux-64",
+  "timestamp": 1641403802629,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/pcre2-10.37-he7ceb23_1.conda",
+  "version": "10.37"
+}

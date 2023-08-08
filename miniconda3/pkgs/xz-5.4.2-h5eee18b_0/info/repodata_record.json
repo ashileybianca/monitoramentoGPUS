@@ -1,0 +1,24 @@
+{
+  "build": "h5eee18b_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "libgcc-ng >=11.2.0"
+  ],
+  "features": "",
+  "fn": "xz-5.4.2-h5eee18b_0.conda",
+  "legacy_bz2_md5": "3eebbb22c5ca63987db36e1f19cbe872",
+  "legacy_bz2_size": 763941,
+  "license": "LGPL-2.1-or-later and GPL-2.0-or-later",
+  "license_family": "GPL2",
+  "md5": "bcd31de48a0dcb44bc5b99675800c5cc",
+  "name": "xz",
+  "sha256": "7920b417109da78d4ec115447cf58775ac7ff7ff96ad6892c6aba118558e9db3",
+  "size": 657129,
+  "subdir": "linux-64",
+  "timestamp": 1683112966413,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/xz-5.4.2-h5eee18b_0.conda",
+  "version": "5.4.2"
+}

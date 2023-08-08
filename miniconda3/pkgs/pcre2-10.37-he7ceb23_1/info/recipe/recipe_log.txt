@@ -1,0 +1,303 @@
+commit 81030b68a43de9a52d51a90eb33d412b140262fe
+Author: Anthony DiPietro <51377278+adipietro18@users.noreply.github.com>
+Date:   Wed Jan 5 12:27:03 2022 -0500
+
+    Recipe clean-ups and rebuild across all platforms (#1)
+    
+    * Update to new GitHub url.
+    
+    * Disable readline across the board
+
+commit c9a47b3d0e5d4481394aab1b19d7d569caa30f68
+Author: Kai Tietz <ktietz@anaconda.com>
+Date:   Mon Aug 23 12:13:14 2021 +0200
+
+    add osx-arm64 support
+
+commit 44536466d0b7ecc276258662e7221b1f5132a6c8
+Author: conda-forge-admin <conda-forge-admin@email.com>
+Date:   Sat Aug 8 11:13:53 2020 +0000
+
+    [ci skip] [skip ci] [cf admin skip] ***NO_CI*** admin migration CFEP13TokenCleanup
+
+commit 8e3e145fe66bb7292782b0d872bfc69417e0bfa7
+Author: Matthew R Becker <becker.mr@gmail.com>
+Date:   Mon May 18 08:10:35 2020 -0500
+
+    [ci skip] [skip ci] [cf admin skip] ***NO_CI*** admin migration CondaForgeAutomerge
+
+commit 00139776e9a6854d7c28a3d2c5ab4098a268cc12
+Author: conda-forge-admin <conda-forge-admin@email.com>
+Date:   Sun May 17 06:13:55 2020 +0000
+
+    [ci skip] [skip ci] [cf admin skip] ***NO_CI*** admin migration CFEP13TokensAndConfig
+
+commit 7269f9cc4a5bdca0034507b90397a422e6b4e034
+Merge: 7e8cb27 0ce8e20
+Author: Uwe L. Korn <xhochy@users.noreply.github.com>
+Date:   Mon May 11 10:48:44 2020 +0200
+
+    Merge pull request #22 from regro-cf-autotick-bot/10.35_h8c97d1
+    
+    pcre2 v10.35
+
+commit 0ce8e2015a7b724c48eb1fa4d07056961bcaf41a
+Author: Uwe L. Korn <uwe.korn@quantco.com>
+Date:   Mon May 11 10:11:58 2020 +0200
+
+    Copy testdata into build folder on Win
+
+commit 43039c067120d472e1a7f54dcc25a90ed8953426
+Author: Uwe L. Korn <uwe.korn@quantco.com>
+Date:   Sun May 10 08:51:13 2020 +0200
+
+    Windows requires sed
+
+commit a5a71a4ed0353f5c1738f17e09964c3bba1e720e
+Author: Uwe L. Korn <uwe.korn@quantco.com>
+Date:   Sun May 10 08:17:27 2020 +0200
+
+    Adjust test to new ABI version
+
+commit 56b6542086148887d29ccaa8e5cee31bb969f54f
+Author: Uwe L. Korn <uwe.korn@quantco.com>
+Date:   Sun May 10 08:12:12 2020 +0200
+
+    Remove upstreamed patches
+
+commit df1f5f7df000a5568ab3c5852929f0bd3299172e
+Author: regro-cf-autotick-bot <circleci@cf-graph.regro.github.com>
+Date:   Sat May 9 16:15:52 2020 +0000
+
+    updated v10.35
+
+commit 7e8cb27b7f836eb3267728bd9526961d4dcf1bd7
+Merge: 0ec1776 8c2ef07
+Author: Uwe L. Korn <xhochy@users.noreply.github.com>
+Date:   Tue Apr 28 14:41:16 2020 +0200
+
+    Merge pull request #21 from regro-cf-autotick-bot/bot-pr_arch_hc388c5
+    
+    Arch Migrator
+
+commit 8c2ef07661d89d5883cbb64982d6cae905d1f37f
+Author: regro-cf-autotick-bot <circleci@cf-graph.regro.github.com>
+Date:   Tue Apr 28 10:33:14 2020 +0000
+
+    MNT: Re-rendered with conda-build 3.19.2, conda-smithy 3.7.0, and conda-forge-pinning 2020.04.27.17.45.41
+
+commit 8ddec9bb49454b82184891c45696d9d801bccf00
+Author: regro-cf-autotick-bot <circleci@cf-graph.regro.github.com>
+Date:   Tue Apr 28 10:32:45 2020 +0000
+
+    migration: ArchRebuild
+
+commit 0ec1776f2261cfc3b31374a9bbea57b678d4492c
+Author: Uwe L. Korn <xhochy@users.noreply.github.com>
+Date:   Fri Apr 24 23:06:37 2020 +0200
+
+    Build 10.34 and use CMake and build for Windows (#20)
+    
+    * Build 10.34 and use CMake
+    
+    * Add CMake patch to align with autotools
+    
+    * Add Windows build
+    
+    * Parse versions from configure.ac
+    
+    * Also build for ppc64le and aarch64
+    
+    * Fix MACHO_CURREN_VERSION, use upstream patches
+
+commit adec277ea45c347b1b6f367562e78489a52056c5
+Author: conda-forge-admin <conda-forge-admin@email.com>
+Date:   Mon Mar 2 22:53:21 2020 +0000
+
+    [ci skip] [skip ci] [cf admin skip] ***NO_CI*** admin migration AutomergeAndRerender
+
+commit d797e23655df613aec11878c4f82506ee8eb07ef
+Author: Filipe <ocefpaf@gmail.com>
+Date:   Tue Nov 13 22:20:02 2018 -0200
+
+    remove .la (#19)
+
+commit 97c2a9f17a820a1ff382de319fe11ef9709be6e0
+Merge: f35a260 094285d
+Author: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date:   Thu Aug 30 15:29:12 2018 -0400
+
+    Merge pull request #17 from regro-cf-autotick-bot/rebuild
+    
+    Rebuild for Python 3.7, GCC 7, R 3.5.1, openBLAS 0.3.2
+
+commit 094285dca3b6e0530ea90ba0bc222ec6b91af1c8
+Author: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date:   Thu Aug 30 15:00:37 2018 -0400
+
+    Version bump and fix tests
+
+commit 449410e4278821f6f86a8836c63a9b1092ad57e2
+Author: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date:   Thu Aug 30 14:30:34 2018 -0400
+
+    Fix recipe test section
+
+commit 78940d37fee0d957a9c817ccde6d0055c4903ba7
+Author: Marius van Niekerk <marius.v.niekerk@gmail.com>
+Date:   Thu Aug 30 14:28:28 2018 -0400
+
+    MNT: Re-rendered with conda-smithy 3.1.12 and pinning 2018.08.28
+
+commit 88fda48b993b12f89b41f885e7876705b378c76e
+Author: regro-cf-autotick-bot <circleci@cf-graph.regro.github.com>
+Date:   Tue Aug 21 02:23:54 2018 +0000
+
+    MNT: Re-rendered with conda-smithy 3.1.12 and pinning 2018.08.14
+
+commit 04b7265df2bcad6d2efd1e672838a833f5d08119
+Author: regro-cf-autotick-bot <circleci@cf-graph.regro.github.com>
+Date:   Tue Aug 21 02:23:49 2018 +0000
+
+    bump build number
+
+commit f35a2607c3c97a7af8150147123ccd52e7ee958d
+Author: Travis CI User <travis@example.org>
+Date:   Sat Aug 4 19:19:12 2018 +0000
+
+    [ci skip] [skip ci] Update anaconda token
+
+commit b50091cf5fcd73bed18d92dc7295bc42dee4678c
+Author: jakirkham <jakirkham@gmail.com>
+Date:   Thu Sep 14 10:27:12 2017 -0400
+
+    Enable macOS (10.30) (#14)
+    
+    * Allow macOS builds of this recipe
+    
+    * MNT: Re-rendered with conda-smithy 2.4.0
+    
+    Now that the `skip` has changes to allow macOS builds of the recipe,
+    re-render to enable Travis CI to build the recipe.
+    
+    * Build with -O3 optimizations
+    
+    Not only should this make pcre2 more performant, it appears to fix a
+    test failure that occurs on macOS.
+    
+    ref: https://bugs.exim.org/show_bug.cgi?id=1642
+    
+    * Add upstream patch for broken test on macOS
+    
+    Appears a test was added that is broken on macOS. Upstream opted to
+    simply skip running this test on macOS noting it as broken. This applies
+    the same patch they used. More details in the bug report link below.
+    
+    ref: https://bugs.exim.org/show_bug.cgi?id=2157
+    
+    * Bump build number to 2
+    
+    Needed as we have changed the compiler optimizations used to build
+    pcre2. So this will alter the existing Linux build.
+
+commit 692db670808f0a1ac5a6645e4e1bbdd5b6b643f0
+Author: jakirkham <jakirkham@gmail.com>
+Date:   Wed Sep 13 14:13:29 2017 -0400
+
+    Enable JIT (10.30) (#9)
+    
+    * Quote the PREFIX
+    
+    Just in case there may be spaces there.
+    
+    * Make build.sh an executable run with bash
+    
+    * Wrap configure arguments
+    
+    * Enable JIT with PCRE2
+    
+    This is how Julia builds PCRE2 and we need to be compatible with their
+    build so as to build Julia itself with this.
+    
+    * Bump build number to 1
+    
+    Need to rebuild with JIT support.
+
+commit dcfbc0c88eb24b2e4b077e000992fafa078925ef
+Merge: 03450eb 1de0aa1
+Author: Dan Fornika <dfornika@gmail.com>
+Date:   Wed Sep 13 10:36:01 2017 -0700
+
+    Merge pull request #5 from jakirkham-feedstocks/back_to_10.30
+    
+    Switch back to 10.30
+
+commit 1de0aa18b774e9bc8e5babb408d25d5c5bb7bfa9
+Author: John Kirkham <kirkhamj@janelia.hhmi.org>
+Date:   Wed Sep 13 12:48:15 2017 -0400
+
+    Switch back to 10.30
+
+commit 03450eba5fbf601b275b8fea794e7c51e7d59276
+Merge: 4494308 4557383
+Author: Dan Fornika <dfornika@gmail.com>
+Date:   Fri Sep 1 14:38:12 2017 -0700
+
+    Merge pull request #3 from dfornika/master
+    
+    Build version 10.23
+
+commit 4557383218a799e71f5f66d4da840a07d697c69b
+Author: Dan Fornika <dfornika@gmail.com>
+Date:   Fri Sep 1 14:30:21 2017 -0700
+
+    Fixed sha256
+
+commit 0aa365d88371c5b34db30411bd97f0daff3505b9
+Author: Dan Fornika <dfornika@gmail.com>
+Date:   Fri Sep 1 14:25:09 2017 -0700
+
+    Build version 10.23
+
+commit 449430847d0505b3d3b34e5f3474a14e4ca04d3a
+Author: Dan Fornika <dfornika@gmail.com>
+Date:   Fri Sep 1 13:46:31 2017 -0700
+
+    Build version 10.21
+
+commit 85d891586b9aca1ecb45c954e39ffd32654e49a6
+Merge: ea31a60 a73bb44
+Author: jakirkham <jakirkham@gmail.com>
+Date:   Thu Aug 31 22:57:08 2017 -0400
+
+    Merge pull request #1 from jakirkham-feedstocks/skip_win
+    
+    Skip Windows
+
+commit a73bb44c8dd7a5a11fe229901b0601ff0df53f48
+Author: John Kirkham <kirkhamj@janelia.hhmi.org>
+Date:   Thu Aug 31 22:51:31 2017 -0400
+
+    MNT: Re-rendered with conda-smithy 2.3.3
+    
+    Disable builds on Windows.
+
+commit c06fc2c5d3ae1ff3880ab43f2e01f2d2c75c5433
+Author: John Kirkham <kirkhamj@janelia.hhmi.org>
+Date:   Thu Aug 31 22:48:56 2017 -0400
+
+    Skip builds not on Linux
+    
+    Should be skipping Windows as well since nothing is being built there.
+
+commit ea31a60c43dad001752aaabe893e94f0d0977284
+Author: Travis-CI on github.com/conda-forge/staged-recipes <conda-forge@googlegroups.com>
+Date:   Fri Sep 1 02:38:36 2017 +0000
+
+    Re-render the feedstock after CI registration.
+
+commit f5c1b660ccb5c78998642554e14cb7eb39ac6192
+Author: Travis-CI on github.com/conda-forge/staged-recipes <conda-forge@googlegroups.com>
+Date:   Fri Sep 1 02:23:47 2017 +0000
+
+    Initial feedstock commit with conda-smithy 2.3.3.

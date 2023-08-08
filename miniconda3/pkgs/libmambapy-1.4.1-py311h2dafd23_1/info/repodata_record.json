@@ -1,0 +1,31 @@
+{
+  "build": "py311h2dafd23_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "fmt >=9.1.0,<10.0a0",
+    "libgcc-ng >=11.2.0",
+    "libmamba 1.4.1 h2dafd23_1",
+    "libstdcxx-ng >=11.2.0",
+    "openssl >=3.0.8,<4.0a0",
+    "pybind11-abi 4",
+    "python >=3.11,<3.12.0a0",
+    "yaml-cpp >=0.7.0,<0.8.0a0"
+  ],
+  "features": "",
+  "fn": "libmambapy-1.4.1-py311h2dafd23_1.conda",
+  "legacy_bz2_md5": "8cd2040d95643ca8f5ca1bf70ea8b3d8",
+  "legacy_bz2_size": 309097,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "bdfb38b822906c7b0b486463ca38d08a",
+  "name": "libmambapy",
+  "sha256": "97bac6f3859f9a0f26ae6d4de9135c06b8f82a59c6e4146da0956d9e54a4cd41",
+  "size": 296261,
+  "subdir": "linux-64",
+  "timestamp": 1685993703132,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/libmambapy-1.4.1-py311h2dafd23_1.conda",
+  "version": "1.4.1"
+}

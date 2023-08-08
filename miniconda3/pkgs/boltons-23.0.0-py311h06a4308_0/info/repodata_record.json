@@ -1,0 +1,24 @@
+{
+  "build": "py311h06a4308_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "python >=3.11,<3.12.0a0"
+  ],
+  "features": "",
+  "fn": "boltons-23.0.0-py311h06a4308_0.conda",
+  "legacy_bz2_md5": "774ba6348a44a0108ed11016fe33536b",
+  "legacy_bz2_size": 522399,
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "4e71bdc81d6cc98f2aec524dd112af37",
+  "name": "boltons",
+  "sha256": "587242fe8e8843cb397dc2a2cbb3d3ff29c9499d98703fa82255aba1e2ad080c",
+  "size": 488776,
+  "subdir": "linux-64",
+  "timestamp": 1677685215859,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/boltons-23.0.0-py311h06a4308_0.conda",
+  "version": "23.0.0"
+}

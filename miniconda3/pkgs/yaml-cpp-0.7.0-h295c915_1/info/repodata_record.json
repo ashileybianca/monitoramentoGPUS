@@ -1,0 +1,25 @@
+{
+  "build": "h295c915_1",
+  "build_number": 1,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "constrains": [],
+  "depends": [
+    "libgcc-ng >=7.5.0",
+    "libstdcxx-ng >=7.5.0"
+  ],
+  "features": "",
+  "fn": "yaml-cpp-0.7.0-h295c915_1.conda",
+  "legacy_bz2_md5": "b6d5d6ea1b1701b745589f1970af96e6",
+  "legacy_bz2_size": 611266,
+  "license": "MIT",
+  "license_family": "MIT",
+  "md5": "f1042fb51b18c40afb3a13e605e82f27",
+  "name": "yaml-cpp",
+  "sha256": "212d97295789451c9de504bf1331ebf5450b5891c33b4f6849b85bae24cfd924",
+  "size": 556088,
+  "subdir": "linux-64",
+  "timestamp": 1646734742292,
+  "track_features": "",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/yaml-cpp-0.7.0-h295c915_1.conda",
+  "version": "0.7.0"
+}
