@@ -1,28 +1,53 @@
 import subprocess
-import time
-import re
+from datetime import datetime
 
-def collect_gpu_info():
+def get_gpu_info():
     try:
-        output = subprocess.check_output(['nvidia-smi'], universal_newlines=True)
-        return output
+        # Obter o horário da consulta usando o comando date
+        timestamp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'], universal_newlines=True).strip()
+
+        command = [
+            'nvidia-smi', 
+            '--query-gpu=index,name,uuid,temperature.gpu,fan.speed,power.draw,power.limit,memory.used,memory.total',
+            '--format=csv,noheader'
+        ]
+        output = subprocess.check_output(command, universal_newlines=True)
+        return timestamp, output
     except Exception as e:
         print("Error:", e)
-        return None
+        return None, None
 
-def extract_gpu_info(gpu_info):
+def parse_gpu_info(output):
+    gpu_list = []
+    lines = output.strip().split('\n')
+    for line in lines:
+        values = line.split(', ')
+        gpu = {
+            'Index': values[0],
+            'Name': values[1],
+            'UUID': values[2],
+            'Temperature': values[3] + '°C',
+            'Fan Speed': values[4],
+            'Power Draw': values[5],
+            'Power Limit': values[6],
+            'Memory Used': values[7],
+            'Memory Total': values[8]
+        }
+        gpu_list.append(gpu)
+    return gpu_list
 
-    for caractere in gpu_info:
+timestamp, output = get_gpu_info()
+if output is not None:
+    gpu_info = parse_gpu_info(output)
 
-        match = re.match(r'(\d+%) +(\d+)C +(\d+)W / (\d+)W +(\d+)MiB / (\d+)MiB')
-        if match:
-            fan, temp, pwr_usage, _, mem_used = match.groups()
-            print("Fan:", fan)
-            print("Temperature:", temp)
-            print("Power Usage:", pwr_usage)
-            print("Memory Used:", mem_used)
-            gpu_data.append((gpu_name, fan, temp, pwr_usage, mem_used))
-
-    return gpu_data
-
-print(extract_gpu_info(collect_gpu_info()))
+    print("=================================================")
+    print(f"GPU Information (Timestamp: {timestamp}):")
+    print()
+    for gpu in gpu_info:
+        print(f"GPU-{gpu['Index']} ({gpu['Name']}):")
+        print(f"  UUID: {gpu['UUID']}")
+        print(f"  Temperature: {gpu['Temperature']}")
+        print(f"  Fan Speed: {gpu['Fan Speed']}")
+        print(f"  Power Draw: {gpu['Power Draw']} / Power Limit: {gpu['Power Limit']}")
+        print(f"  Memory Used: {gpu['Memory Used']} / Memory Total: {gpu['Memory Total']}")
+        print()
