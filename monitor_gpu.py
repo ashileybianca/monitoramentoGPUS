@@ -80,7 +80,9 @@ def main():
             # Check for errors in GPU values
             for gpu in gpu_info:
                 if not gpu['Temperature'].isdigit() or not gpu['Fan Speed'].isdigit() or not gpu['Power Draw'].replace('.', '', 1).isdigit():
-                    formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}) values at {timestamp}\n"
+                    error_message = "Temperature" if not gpu['Temperature'].isdigit() else ("Fan Speed" if not gpu['Fan Speed'].isdigit() else "Power Draw")
+                    formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}): {error_message} values at {timestamp}\n"
+
 
             peak_values = find_peak_values(gpu_info, peak_values)
 
