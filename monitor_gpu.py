@@ -1,18 +1,16 @@
 import subprocess
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 def get_gpu_info():
     try:
         timestamp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'], universal_newlines=True).strip()
-
         command = [
             'nvidia-smi', 
             '--query-gpu=index,name,uuid,temperature.gpu,fan.speed,power.draw,power.limit,memory.used,memory.total',
             '--format=csv,noheader'
         ]
         output = subprocess.check_output(command, universal_newlines=True)
-
         return timestamp, output
     except Exception as e:
         print("Error:", e)
@@ -27,12 +25,12 @@ def parse_gpu_info(output):
             'Index': int(values[0]),
             'Name': values[1],
             'UUID': values[2],
-            'Temperature': values[3].replace('°C', ''),
-            'Fan Speed': values[4].replace(' %', ''),
-            'Power Draw': values[5].replace(' W', ''),
-            'Power Limit': values[6].replace(' W', ''),
-            'Memory Used': values[7].split()[0],
-            'Memory Total': values[8].split()[0]
+            'Temperature': int(values[3].replace('°C', '')),
+            'Fan Speed': int(values[4].replace(' %', '')),
+            'Power Draw': float(values[5].replace(' W', '')),
+            'Power Limit': float(values[6].replace(' W', '')),
+            'Memory Used': int(values[7].split()[0]),
+            'Memory Total': int(values[8].split()[0])
         }
         gpu_list.append(gpu)
     return gpu_list
@@ -57,6 +55,17 @@ def find_peak_values(gpu_data, peak_values):
                 peak_values[gpu_index]['Power Draw'] = {'Value': gpu['Power Draw'], 'Time': timestamp}
     return peak_values
 
+def save_peak_values(peak_values, duration, gpu_info):
+    with open(output_filename, "a") as log_file:
+        formatted_output = f"\nPEAK VALUES for the last {duration}:\n"
+        for gpu, values in peak_values.items():
+            formatted_output += f"\nGPU-{gpu} ({gpu_info[gpu]['Name']}):\n"
+            formatted_output += f"  UUID: {gpu_info[gpu]['UUID']}\n"
+            formatted_output += f"  Temperature: {values['Temperature']['Value']}°C (Time: {values['Temperature']['Time']})\n"
+            formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} % (Time: {values['Fan Speed']['Time']})\n"
+            formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W (Time: {values['Power Draw']['Time']})\n"
+        log_file.write(formatted_output)
+
 output_filename = "gpu_logs.txt"
 
 def main():
@@ -77,28 +86,20 @@ def main():
                 formatted_output += f"  Power Draw: {gpu['Power Draw']} W\n"
                 formatted_output += f"  Memory Used: {gpu['Memory Used']} MiB\n"
 
-            # Check for errors in GPU values
             for gpu in gpu_info:
-                if not gpu['Temperature'].isdigit() or not gpu['Fan Speed'].isdigit() or not gpu['Power Draw'].replace('.', '', 1).isdigit():
-                    error_message = "Temperature" if not gpu['Temperature'].isdigit() else ("Fan Speed" if not gpu['Fan Speed'].isdigit() else "Power Draw")
-                    formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}): {error_message} values at {timestamp}\n"
-
+                if not isinstance(gpu['Temperature'], int) or not isinstance(gpu['Fan Speed'], int) or not isinstance(gpu['Power Draw'], float):
+                    formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}) values at {timestamp}\n"
 
             peak_values = find_peak_values(gpu_info, peak_values)
 
-            formatted_output += f"\nPEAK VALUES (until Timestamp: {timestamp}):\n"
-            for gpu, values in peak_values.items():
-                formatted_output += f"\nGPU {gpu} ({gpu_info[gpu]['Name']}):\n"
-                formatted_output += f"  UUID: {gpu_info[gpu]['UUID']}\n"
-                formatted_output += f"  Temperature: {values['Temperature']['Value']}°C (Time: {values['Temperature']['Time']})\n"
-                formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} % (Time: {values['Fan Speed']['Time']})\n"
-                formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W (Time: {values['Power Draw']['Time']})\n"
+            # Save peak values for the last hour
+            save_peak_values(peak_values, "hour", gpu_info)
 
             # Write the formatted output to the file
             with open(output_filename, "a") as log_file:
                 log_file.write(formatted_output)
 
-        time.sleep(120)
+        time.sleep(60)
 
 if __name__ == "__main__":
     main()
