@@ -686,3 +686,46 @@ GPU-2 (NVIDIA TITAN Xp):
   Fan Speed: 23 %
   Power Draw: 8.84 W
   Memory Used: 16 MiB
+=================================================
+GPU Information (Timestamp: 2023-08-15 15:35:01):
+
+GPU-0 (NVIDIA GeForce GTX 1080 Ti):
+  UUID: GPU-c88a74a5-b34a-c9d6-51e4-eaca7620d8ba
+  Temperature: 25°C
+  Fan Speed: 0 %
+  Power Draw: 7.47 W
+  Memory Used: 6 MiB
+
+GPU-1 (NVIDIA GeForce GTX 1080 Ti):
+  UUID: GPU-afb7f193-9332-c1da-1b1d-14bc7b378267
+  Temperature: 24°C
+  Fan Speed: 0 %
+  Power Draw: 7.48 W
+  Memory Used: 6 MiB
+
+GPU-2 (NVIDIA TITAN Xp):
+  UUID: GPU-61a64725-ad86-0781-bdbf-7c6f397f98a6
+  Temperature: 31°C
+  Fan Speed: 23 %
+  Power Draw: 9.03 W
+  Memory Used: 16 MiB
+
+PEAK VALUES (until Timestamp: 2023-08-15 15:35:01):
+
+GPU-0 (NVIDIA GeForce GTX 1080 Ti):
+  UUID: GPU-c88a74a5-b34a-c9d6-51e4-eaca7620d8ba
+  Temperature: 25°C (Time: 2023-08-15 15:35:01)
+  Fan Speed: 0 % (Time: 2023-08-15 15:35:01)
+  Power Draw: 7.47 W (Time: 2023-08-15 15:35:01)
+
+GPU-1 (NVIDIA GeForce GTX 1080 Ti):
+  UUID: GPU-afb7f193-9332-c1da-1b1d-14bc7b378267
+  Temperature: 24°C (Time: 2023-08-15 15:35:01)
+  Fan Speed: 0 % (Time: 2023-08-15 15:35:01)
+  Power Draw: 7.48 W (Time: 2023-08-15 15:35:01)
+
+GPU-2 (NVIDIA TITAN Xp):
+  UUID: GPU-61a64725-ad86-0781-bdbf-7c6f397f98a6
+  Temperature: 31°C (Time: 2023-08-15 15:35:01)
+  Fan Speed: 23 % (Time: 2023-08-15 15:35:01)
+  Power Draw: 9.03 W (Time: 2023-08-15 15:35:01)
