@@ -4,7 +4,7 @@ import time
 
 def get_gpu_info():
     try:
-        timestamp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'], universal_newlines=True).strip()
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         command = [
             'nvidia-smi', 
             '--query-gpu=index,name,uuid,temperature.gpu,fan.speed,power.draw,power.limit,memory.used,memory.total',
@@ -16,7 +16,7 @@ def get_gpu_info():
         print("Error:", e)
         return None, None
 
-def parse_gpu_info(output, elapsed_time):
+def parse_gpu_info(output, elapsed_time = 0):
     gpu_list = []
     lines = output.strip().split('\n')
     for line in lines:
@@ -31,34 +31,30 @@ def parse_gpu_info(output, elapsed_time):
             'Power Limit': float(values[6].replace(' W', '')),
             'Memory Used': int(values[7].split()[0]),
             'Memory Total': int(values[8].split()[0]),
-            'Elapsed Time': elapsed_time  # Armazena o tempo decorrido desde a última coleta
+            'Elapsed Time': int(elapsed_time[0]),
+            'Timestamp': None
         }
         gpu_list.append(gpu)
     return gpu_list
 
-def find_peak_values(gpu_data, peak_values):
-    timestamp = gpu_data[0]['Timestamp']
 
+def find_peak_values(gpu_data, peak_values, timestamp):
     for gpu in gpu_data:
         gpu_index = gpu['Index']
         elapsed_time = gpu['Elapsed Time']
-        
-        # Adiciona tempo aos valores de pico a cada iteração
-        if elapsed_time <= 604800:  # Uma semana
-            elapsed_time += 300
-        
+            
         # Armazena os valores nas listas de informações para cada intervalo de tempo
-        if elapsed_time <= 3600:  # Última hora
+        if elapsed_time <= 120: #3600:  # Última hora
             metrics['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
             metrics['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
             metrics['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
         
-        if elapsed_time <= 86400:  # Último dia
+        if elapsed_time <= 300: #86400:  # Último dia
             metrics_24h['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
             metrics_24h['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
             metrics_24h['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
         
-        if elapsed_time <= 604800:  # Última semana
+        if elapsed_time <= 600: #604800:  # Última semana
             metrics_1w['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
             metrics_1w['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
             metrics_1w['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
@@ -81,7 +77,6 @@ def find_peak_values(gpu_data, peak_values):
 
 output_filename = "gpu_logs.txt"
 
-# Dicionários para armazenar as informações de cada intervalo de tempo
 metrics = {
     'Temperature': {0: [], 1: [], 2: []},
     'Fan Speed': {0: [], 1: [], 2: []},
@@ -104,15 +99,19 @@ def main():
     peak_values_hour = {}
     peak_values_day = {}
     peak_values_week = {}
-    elapsed_time = 0
+    elapsed_time = {0: 0, 1: 0, 2: 0}
 
     while True:
         timestamp, output = get_gpu_info()
         if output is not None:
             gpu_info = parse_gpu_info(output, elapsed_time)
-            elapsed_time += 300
 
-            gpu_info[0]['Timestamp'] = timestamp 
+            for gpu in gpu_info:
+                gpu['Timestamp'] = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+                print(elapsed_time[gpu['Index']])
+                if elapsed_time[gpu['Index']]  <= 600: #604800:  # Uma semana
+                    elapsed_time[gpu['Index']] += 60  # Increment elapsed time for the GPU
+                    print(elapsed_time[gpu['Index']])
 
             formatted_output = f"=================================================\n"
             formatted_output += f"GPU Information (Timestamp: {timestamp}):\n"
@@ -128,9 +127,10 @@ def main():
                 if not isinstance(gpu['Temperature'], int) or not isinstance(gpu['Fan Speed'], int) or not isinstance(gpu['Power Draw'], float):
                     formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}) values at {timestamp}\n"
 
-            peak_values_hour = find_peak_values(gpu_info, peak_values_hour)  # Última hora
-            peak_values_day = find_peak_values(gpu_info, peak_values_day)    # Último dia
-            peak_values_week = find_peak_values(gpu_info, peak_values_week)  # Última semana
+            peak_values_hour = find_peak_values(gpu_info, peak_values_hour, timestamp)  # Última hora
+            peak_values_day = find_peak_values(gpu_info, peak_values_day, timestamp)    # Último dia
+            peak_values_week = find_peak_values(gpu_info, peak_values_week, timestamp)  # Última semana
+
 
             formatted_output += f"\nPEAK VALUES (until Timestamp: {timestamp}):\n"
 
@@ -166,5 +166,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-#luana testing branch
