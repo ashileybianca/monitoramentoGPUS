@@ -2,6 +2,44 @@ import subprocess
 from datetime import datetime
 import time
 
+# Inicializa os dicionários de métricas para cada período
+metrics = {
+    'Temperature': {
+        'Hour': {0: [], 1: [], 2: []},
+        'Day': {0: [], 1: [], 2: []},
+        'Week': {0: [], 1: [], 2: []}
+    },
+    'Fan Speed': {
+        'Hour': {0: [], 1: [], 2: []},
+        'Day': {0: [], 1: [], 2: []},
+        'Week': {0: [], 1: [], 2: []}
+    },
+    'Power Draw': {
+        'Hour': {0: [], 1: [], 2: []},
+        'Day': {0: [], 1: [], 2: []},
+        'Week': {0: [], 1: [], 2: []}
+    }
+}
+
+# Inicializa os dicionários de picos para cada período
+peak_values_hour = {
+    0: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}},
+    1: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}},
+    2: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}}
+}
+
+peak_values_day = {
+    0: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
+    1: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
+    2: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0}
+}
+
+peak_values_week = {
+    0: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
+    1: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
+    2: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0}
+}
+
 def get_gpu_info():
     try:
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -16,13 +54,14 @@ def get_gpu_info():
         print("Error:", e)
         return None, None
 
-def parse_gpu_info(output, elapsed_time = 0):
+def parse_gpu_info(output):
     gpu_list = []
     lines = output.strip().split('\n')
     for line in lines:
         values = line.split(', ')
+        gpu_index = int(values[0])
         gpu = {
-            'Index': int(values[0]),
+            'Index': gpu_index,
             'Name': values[1],
             'UUID': values[2],
             'Temperature': int(values[3].replace('°C', '')),
@@ -31,87 +70,67 @@ def parse_gpu_info(output, elapsed_time = 0):
             'Power Limit': float(values[6].replace(' W', '')),
             'Memory Used': int(values[7].split()[0]),
             'Memory Total': int(values[8].split()[0]),
-            'Elapsed Time': int(elapsed_time[0]),
             'Timestamp': None
         }
         gpu_list.append(gpu)
     return gpu_list
 
-
 def find_peak_values(gpu_data, peak_values, timestamp):
     for gpu in gpu_data:
         gpu_index = gpu['Index']
-        elapsed_time = gpu['Elapsed Time']
-            
-        # Armazena os valores nas listas de informações para cada intervalo de tempo
-        if elapsed_time <= 120: #3600:  # Última hora
-            metrics['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
-            metrics['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
-            metrics['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
+        timestamp = gpu['Timestamp']
+        temperature = gpu['Temperature']
+        fan_speed = gpu['Fan Speed']
+        power_draw = gpu['Power Draw']
         
-        if elapsed_time <= 300: #86400:  # Último dia
-            metrics_24h['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
-            metrics_24h['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
-            metrics_24h['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
-        
-        if elapsed_time <= 600: #604800:  # Última semana
-            metrics_1w['Temperature'][gpu_index].append((gpu['Temperature'], timestamp, elapsed_time))
-            metrics_1w['Fan Speed'][gpu_index].append((gpu['Fan Speed'], timestamp, elapsed_time))
-            metrics_1w['Power Draw'][gpu_index].append((gpu['Power Draw'], timestamp, elapsed_time))
+        if len(metrics['Temperature']['Hour'][gpu_index]) <= 3:
+            candidates_hour_temp = metrics['Temperature']['Hour'][gpu_index][-3:]
+            max_candidate_hour_temp = max(candidates_hour_temp)
+            peak_values_hour[gpu_index]['Temperature']['Value'] = max_candidate_hour_temp
+            peak_values_hour[gpu_index]['Temperature']['Time'] = timestamp
 
-        # Atualiza os valores de pico
-        if gpu_index not in peak_values:
-            peak_values[gpu_index] = {
-                'Temperature': {'Value': gpu['Temperature'], 'Time': timestamp},
-                'Fan Speed': {'Value': gpu['Fan Speed'], 'Time': timestamp},
-                'Power Draw': {'Value': gpu['Power Draw'], 'Time': timestamp},
-            }
-        else:
-            if gpu['Temperature'] > peak_values[gpu_index]['Temperature']['Value'] or gpu['Temperature'] == peak_values[gpu_index]['Temperature']['Value']:
-                peak_values[gpu_index]['Temperature'] = {'Value': gpu['Temperature'], 'Time': timestamp}
-            if gpu['Fan Speed'] > peak_values[gpu_index]['Fan Speed']['Value'] or gpu['Fan Speed'] == peak_values[gpu_index]['Fan Speed']['Value']:
-                peak_values[gpu_index]['Fan Speed'] = {'Value': gpu['Fan Speed'], 'Time': timestamp}
-            if gpu['Power Draw'] > peak_values[gpu_index]['Power Draw']['Value'] or gpu['Power Draw'] == peak_values[gpu_index]['Power Draw']['Value']:
-                peak_values[gpu_index]['Power Draw'] = {'Value': gpu['Power Draw'], 'Time': timestamp}
-    return peak_values
+        # Atualização de picos para o período de dia
+        if len(metrics['Temperature']['Day'][gpu_index]) <= 289:
+            candidates_day_temp = metrics['Temperature']['Day'][gpu_index][-289:]
+            max_candidate_day_temp = max(candidates_day_temp)
+            peak_values_day[gpu_index]['Temperature'] = max_candidate_day_temp
 
-output_filename = "gpu_logs.txt"
+        # Atualização de picos para o período de semana
+        if len(metrics['Temperature']['Week'][gpu_index]) <= 2024:
+            candidates_week_temp = metrics['Temperature']['Week'][gpu_index][-2024:]
+            max_candidate_week_temp = max(candidates_week_temp)
+            peak_values_week[gpu_index]['Temperature'] = max_candidate_week_temp
 
-metrics = {
-    'Temperature': {0: [], 1: [], 2: []},
-    'Fan Speed': {0: [], 1: [], 2: []},
-    'Power Draw': {0: [], 1: [], 2: []}
-}
+        if len(metrics['Fan Speed']['Hour'][gpu_index]) <= 3:
+            candidates_hour_fan = metrics['Fan Speed']['Hour'][gpu_index][-3:]
+            max_candidate_hour_fan = max(candidates_hour_fan)
+            peak_values_hour[gpu_index]['Fan Speed']['Value'] = max_candidate_hour_fan
+            peak_values_hour[gpu_index]['Fan Speed']['Time'] = timestamp
 
-metrics_24h = {
-    'Temperature': {0: [], 1: [], 2: []},
-    'Fan Speed': {0: [], 1: [], 2: []},
-    'Power Draw': {0: [], 1: [], 2: []}
-}
+        # Atualização de picos para o período de dia
+        if len(metrics['Fan Speed']['Day'][gpu_index]) <= 289:
+            candidates_day_fan = metrics['Fan Speed']['Day'][gpu_index][-289:]
+            max_candidate_day_fan = max(candidates_day_fan)
+            peak_values_day[gpu_index]['Fan Speed'] = max_candidate_day_fan
 
-metrics_1w = {
-    'Temperature': {0: [], 1: [], 2: []},
-    'Fan Speed': {0: [], 1: [], 2: []},
-    'Power Draw': {0: [], 1: [], 2: []}
-}
+        # Atualização de picos para o período de semana
+        if len(metrics['Fan Speed']['Week'][gpu_index]) <= 2024:
+            candidates_week_fan = metrics['Fan Speed']['Week'][gpu_index][-2024:]
+            max_candidate_week_fan = max(candidates_week_fan)
+            peak_values_week[gpu_index]['Fan Speed'] = max_candidate_week_fan
 
 def main():
-    peak_values_hour = {}
-    peak_values_day = {}
-    peak_values_week = {}
-    elapsed_time = {0: 0, 1: 0, 2: 0}
+    output_filename = "gpu_logs.txt"
 
     while True:
         timestamp, output = get_gpu_info()
         if output is not None:
-            gpu_info = parse_gpu_info(output, elapsed_time)
+            gpu_info = parse_gpu_info(output)
 
             for gpu in gpu_info:
                 gpu['Timestamp'] = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
-                print(elapsed_time[gpu['Index']])
-                if elapsed_time[gpu['Index']]  <= 600: #604800:  # Uma semana
-                    elapsed_time[gpu['Index']] += 60  # Increment elapsed time for the GPU
-                    print(elapsed_time[gpu['Index']])
+
+            find_peak_values(gpu_info, peak_values_hour, timestamp)
 
             formatted_output = f"=================================================\n"
             formatted_output += f"GPU Information (Timestamp: {timestamp}):\n"
@@ -123,46 +142,40 @@ def main():
                 formatted_output += f"  Power Draw: {gpu['Power Draw']} W\n"
                 formatted_output += f"  Memory Used: {gpu['Memory Used']} MiB\n"
 
-            for gpu in gpu_info:
-                if not isinstance(gpu['Temperature'], int) or not isinstance(gpu['Fan Speed'], int) or not isinstance(gpu['Power Draw'], float):
-                    formatted_output += f"\nERROR in GPU-{gpu['Index']} ({gpu['Name']}) values at {timestamp}\n"
-
-            peak_values_hour = find_peak_values(gpu_info, peak_values_hour, timestamp)  # Última hora
-            peak_values_day = find_peak_values(gpu_info, peak_values_day, timestamp)    # Último dia
-            peak_values_week = find_peak_values(gpu_info, peak_values_week, timestamp)  # Última semana
-
-
+            # Printa picos de hora
             formatted_output += f"\nPEAK VALUES (until Timestamp: {timestamp}):\n"
-
             formatted_output += f"\nPeak 1h:\n"
             for gpu, values in peak_values_hour.items():
                 formatted_output += f"\nGPU-{gpu} ({gpu_info[gpu]['Name']}):\n"
                 formatted_output += f"  UUID: {gpu_info[gpu]['UUID']}\n"
-                formatted_output += f"  Temperature: {values['Temperature']['Value']}°C (Time: {values['Temperature']['Time']})\n"
-                formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} % (Time: {values['Fan Speed']['Time']})\n"
-                formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W (Time: {values['Power Draw']['Time']})\n"
+                formatted_output += f"  Temperature: {values['Temperature']['Value']}°C\n"
+                formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} %\n"
+                formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W\n"
+                formatted_output += f"    Time: {values['Power Draw']['Time']}\n"
 
+            # Printa picos de dia
             formatted_output += f"\nPeak 24h:\n"
             for gpu, values in peak_values_day.items():
                 formatted_output += f"\nGPU-{gpu} ({gpu_info[gpu]['Name']}):\n"
                 formatted_output += f"  UUID: {gpu_info[gpu]['UUID']}\n"
-                formatted_output += f"  Temperature: {values['Temperature']['Value']}°C (Time: {values['Temperature']['Time']})\n"
-                formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} % (Time: {values['Fan Speed']['Time']})\n"
-                formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W (Time: {values['Power Draw']['Time']})\n"
+                formatted_output += f"  Temperature: {values['Temperature']}°C\n"
+                formatted_output += f"  Fan Speed: {values['Fan Speed']} %\n"
+                formatted_output += f"  Power Draw: {values['Power Draw']} W\n"
 
+            # Printa picos de semana
             formatted_output += f"\nPeak 1w:\n"
             for gpu, values in peak_values_week.items():
                 formatted_output += f"\nGPU-{gpu} ({gpu_info[gpu]['Name']}):\n"
                 formatted_output += f"  UUID: {gpu_info[gpu]['UUID']}\n"
-                formatted_output += f"  Temperature: {values['Temperature']['Value']}°C (Time: {values['Temperature']['Time']})\n"
-                formatted_output += f"  Fan Speed: {values['Fan Speed']['Value']} % (Time: {values['Fan Speed']['Time']})\n"
-                formatted_output += f"  Power Draw: {values['Power Draw']['Value']} W (Time: {values['Power Draw']['Time']})\n"
+                formatted_output += f"  Temperature: {values['Temperature']}°C\n"
+                formatted_output += f"  Fan Speed: {values['Fan Speed']} %\n"
+                formatted_output += f"  Power Draw: {values['Power Draw']} W\n"
 
             # Write the formatted output to the file
             with open(output_filename, "a") as log_file:
                 log_file.write(formatted_output)
 
-        time.sleep(60)
+        time.sleep(30)  # Sleep for 5 minutes (300 seconds)
 
 if __name__ == "__main__":
     main()
