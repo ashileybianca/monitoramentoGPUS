@@ -1,0 +1,50 @@
+2023-08-29 16:03:03.550 [info] 
+
+
+
+
+2023-08-29 16:03:03.562 [info] Extension host agent started.
+2023-08-29 16:03:03.856 [info] [127.0.0.1][556b1dc4][ManagementConnection] New connection established.
+2023-08-29 16:03:03.857 [info] [127.0.0.1][693ac142][ExtensionHostConnection] New connection established.
+2023-08-29 16:03:04.145 [info] [127.0.0.1][693ac142][ExtensionHostConnection] <16368> Launched Extension Host Process.
+2023-08-29 16:03:07.894 [error] CodeExpectedError: Could not find pty on pty host
+    at g.P (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:7542)
+    at g.updateTitle (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:2693)
+    at g.B.<computed> (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:27:22689)
+    at Object.call (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:17:4867)
+    at l.s (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:5150)
+    at l.q (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4661)
+    at i.value (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4066)
+    at k.w (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:1902)
+    at k.fire (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:2119)
+    at process.X (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:8:27134)
+    at process.emit (node:events:513:28)
+    at emit (node:internal/child_process:939:14)
+    at processTicksAndRejections (node:internal/process/task_queues:84:21)
+2023-08-29 16:03:20.860 [info] [127.0.0.1][556b1dc4][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+2023-08-29 16:03:20.861 [error] Error: Throttler is disposed
+    at r.queue (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:13612)
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:15183
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:14822
+2023-08-29 16:03:20.875 [info] [127.0.0.1][693ac142][ExtensionHostConnection] <16368> Extension Host Process exited with code: 0, signal: null.
+2023-08-29 16:03:20.876 [info] Cancelling previous shutdown timeout
+2023-08-29 16:03:20.876 [info] Last EH closed, waiting before shutting down
+2023-08-29 16:03:45.547 [info] Got delay-shutdown request while in shutdown timeout, delaying
+2023-08-29 16:03:45.547 [info] Cancelling previous shutdown timeout
+2023-08-29 16:03:46.058 [info] [127.0.0.1][a6bef0a5][ManagementConnection] New connection established.
+2023-08-29 16:03:46.073 [info] [127.0.0.1][cd5a87a4][ExtensionHostConnection] New connection established.
+2023-08-29 16:03:46.079 [info] [127.0.0.1][cd5a87a4][ExtensionHostConnection] <16505> Launched Extension Host Process.
+2023-08-29 16:03:49.681 [error] CodeExpectedError: Could not find pty on pty host
+    at g.P (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:7542)
+    at g.updateTitle (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:2693)
+    at g.B.<computed> (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:27:22689)
+    at Object.call (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:17:4867)
+    at l.s (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:5150)
+    at l.q (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4661)
+    at i.value (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4066)
+    at k.w (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:1902)
+    at k.fire (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:2119)
+    at process.X (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:8:27134)
+    at process.emit (node:events:513:28)
+    at emit (node:internal/child_process:939:14)
+    at processTicksAndRejections (node:internal/process/task_queues:84:21)

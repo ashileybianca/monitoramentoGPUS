@@ -1,0 +1,27 @@
+2023-08-18 16:38:55.646 [info] 
+
+
+
+
+2023-08-18 16:38:55.658 [info] Extension host agent started.
+2023-08-18 16:38:56.403 [info] [127.0.0.1][e5f5d40b][ManagementConnection] New connection established.
+2023-08-18 16:38:56.548 [info] [127.0.0.1][dafb5148][ExtensionHostConnection] New connection established.
+2023-08-18 16:38:56.848 [info] [127.0.0.1][dafb5148][ExtensionHostConnection] <3867505> Launched Extension Host Process.
+2023-08-18 16:38:57.733 [error] TypeError: Cannot read properties of undefined (reading 'cwd')
+    at g.I (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:941)
+    at g.reviveTerminalProcesses (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:795)
+    at g.B.<computed> (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:27:22689)
+    at Object.call (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:17:4867)
+    at l.s (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:5150)
+    at l.q (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4661)
+    at i.value (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4066)
+    at k.w (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:1902)
+    at k.fire (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:2119)
+    at process.X (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:8:27134)
+    at process.emit (node:events:513:28)
+    at emit (node:internal/child_process:939:14)
+    at processTicksAndRejections (node:internal/process/task_queues:84:21)
+2023-08-18 16:43:55.659 [info] New EH opened, aborting shutdown
+2023-08-18 20:27:54.579 [info] [127.0.0.1][dafb5148][ExtensionHostConnection] <3867505> Extension Host Process exited with code: 0, signal: null.
+2023-08-18 20:27:54.580 [info] Last EH closed, waiting before shutting down
+2023-08-18 20:32:54.581 [info] Last EH closed, shutting down

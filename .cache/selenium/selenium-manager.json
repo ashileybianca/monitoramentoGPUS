@@ -1,0 +1,17 @@
+{
+  "browsers": [
+    {
+      "browser_name": "chrome",
+      "browser_version": "94",
+      "browser_ttl": 1689339804
+    }
+  ],
+  "drivers": [
+    {
+      "browser_version": "94",
+      "driver_name": "chromedriver",
+      "driver_version": "94.0.4606.113",
+      "driver_ttl": 1689363496
+    }
+  ]
+}

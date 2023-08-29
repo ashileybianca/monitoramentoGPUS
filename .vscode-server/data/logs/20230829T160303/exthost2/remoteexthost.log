@@ -1,0 +1,15 @@
+2023-08-29 16:03:48.729 [info] Extension host with pid 16505 started
+2023-08-29 16:03:48.740 [info] Lock '/home/ashiley/.vscode-server/data/User/workspaceStorage/f4e6a2a7a9c33adf5bb5deedf28718de/vscode.lock': Lock acquired.
+2023-08-29 16:03:50.332 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2023-08-29 16:03:51.333 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*'
+2023-08-29 16:03:51.818 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2023-08-29 16:03:52.218 [info] Eager extensions activated
+2023-08-29 16:03:52.219 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2023-08-29 16:03:52.219 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2023-08-29 16:03:54.404 [info] ExtensionService#_doActivateExtension vscode.git, startup: false, activationEvent: 'api', root cause: vscode.github
+2023-08-29 16:03:56.032 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
+2023-08-29 16:03:56.697 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
+2023-08-29 16:03:57.879 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
+2023-08-29 16:04:14.718 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
+2023-08-29 16:05:55.624 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
+2023-08-29 16:06:04.816 [warning] [Decorations] CAPPING events from decorations provider vscode.git 5543
