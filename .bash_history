@@ -303,3 +303,16 @@ clear
 python monitor_gpu.py
 clear
 python monitor_gpu.py
+git checkout -b novalogica
+git add .
+git commit -m "Tentando reestruturar de outra forma. Os numeros são somente para teste rápido, posteriormente serão alterados para a quantidade correta de posicoes que correspondem a quantidade de coletas em hora/dia/semana. Adicionada breve documentação de algumas funcoes"
+git push origin novalogica
+nvidia-smi
+cd ..
+ls
+nvidia-smi
+ls
+cd ..
+ls
+cd ..
+ls

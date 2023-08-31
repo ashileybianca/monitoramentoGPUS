@@ -2,61 +2,16 @@ import subprocess
 from datetime import datetime
 import time
 
-# Inicializa os dicionários de métricas para cada período
-metrics = {
-    'Temperature': {
-        'Hour': {0: [], 1: [], 2: []},
-        'Day': {0: [], 1: [], 2: []},
-        'Week': {0: [], 1: [], 2: []}
-    },
-    'Fan Speed': {
-        'Hour': {0: [], 1: [], 2: []},
-        'Day': {0: [], 1: [], 2: []},
-        'Week': {0: [], 1: [], 2: []}
-    },
-    'Power Draw': {
-        'Hour': {0: [], 1: [], 2: []},
-        'Day': {0: [], 1: [], 2: []},
-        'Week': {0: [], 1: [], 2: []}
-    }
-}
+# Dicionário para armazenar os dados históricos das GPUs
+gpu_historic_data = {}
 
-# Inicializa os dicionários de picos para cada período
-peak_values_hour = {
-    0: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}},
-    1: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}},
-    2: {'Temperature': {'Value': 0, 'Time': None}, 'Fan Speed': {'Value': 0, 'Time': None}, 'Power Draw': {'Value': 0, 'Time': None}}
-}
-
-peak_values_day = {
-    0: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
-    1: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
-    2: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0}
-}
-
-peak_values_week = {
-    0: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
-    1: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0},
-    2: {'Temperature': 0, 'Fan Speed': 0, 'Power Draw': 0}
-}
+# Lista para armazenar os timestamps
+timestamps = []
 
 def get_gpu_info():
     """
-    Obtém informações sobre as GPUs utilizando o comando 'nvidia-smi'.
-
-    Esta função executa o comando 'nvidia-smi' para obter informações detalhadas sobre as GPUs presentes
-    no sistema. As informações coletadas incluem o índice da GPU, nome, UUID, temperatura da GPU, velocidade
-    do ventilador, consumo de energia, limite de energia, uso de memória e total de memória.
-
-    Returns:
-        tuple: Uma tupla contendo dois elementos. O primeiro elemento é uma string representando o timestamp
-        no formato '%Y-%m-%d %H:%M:%S', indicando o momento em que as informações foram obtidas. O segundo
-        elemento é uma string contendo a saída do comando 'nvidia-smi' que contém as informações das GPUs.
-
-    Raises:
-        Exception: Se ocorrer algum erro ao executar o comando 'nvidia-smi', uma exceção será capturada
-        e uma mensagem de erro será exibida no console. Nesse caso, a função retornará uma tupla contendo
-        dois elementos None.
+    Obtém informações das GPUs usando o comando 'nvidia-smi'.
+    Retorna um timestamp e a saída do comando.
     """
     try:
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -66,6 +21,7 @@ def get_gpu_info():
             '--format=csv,noheader'
         ]
         output = subprocess.check_output(command, universal_newlines=True)
+        timestamps.append(timestamp)
         return timestamp, output
     except Exception as e:
         print("Error:", e)
@@ -73,50 +29,29 @@ def get_gpu_info():
 
 def parse_gpu_info(output):
     """
-    Analisa a saída do comando 'nvidia-smi' para extrair informações sobre as GPUs.
-
-    Esta função recebe a saída do comando 'nvidia-smi' como entrada e a analisa para extrair informações
-    detalhadas sobre as GPUs. Cada linha da saída representa uma GPU e contém informações como índice, nome,
-    UUID, temperatura da GPU, velocidade do ventilador, consumo de energia, limite de energia, uso de memória
-    e total de memória.
-
-    Args:
-        output (str): A saída do comando 'nvidia-smi' que contém informações das GPUs.
-
-    Returns:
-        list: Uma lista de dicionários, onde cada dicionário representa uma GPU e contém informações como índice,
-        nome, UUID, temperatura, velocidade do ventilador, consumo de energia, limite de energia, uso de memória
-        e total de memória.
-
-    Example:
-        A linha da saída do 'nvidia-smi' pode ser assim:
-        "0, GeForce GTX 1080, GPU-0d6769db-dedd-54f4-560f-a32c207842e2, 61°C, 22 %, 150.30 W, 180.00 W, 8192 MiB / 8192 MiB"
-        Nesse caso, o dicionário correspondente seria:
-        {
-            'Index': 0,
-            'Name': 'GeForce GTX 1080',
-            'UUID': 'GPU-0d6769db-dedd-54f4-560f-a32c207842e2',
-            'Temperature': 61,
-            'Fan Speed': 22,
-            'Power Draw': 150.30,
-            'Power Limit': 180.00,
-            'Memory Used': 8192,
-            'Memory Total': 8192,
-            'Timestamp': None
-        }
+    Analisa a saída do comando 'nvidia-smi' e retorna uma lista de dicionários com as informações das GPUs.
     """
     gpu_list = []
     lines = output.strip().split('\n')
     for line in lines:
         values = line.split(', ')
         gpu_index = int(values[0])
+        
+        try:
+            temperature = int(values[3].replace('°C', ''))
+            fanspeed = int(values[4].replace(' %', ''))
+            power_draw = float(values[5].replace(' W', ''))
+        except ValueError:
+            print(f"Erro na GPU {gpu_index}")
+            continue
+        
         gpu = {
             'Index': gpu_index,
             'Name': values[1],
             'UUID': values[2],
-            'Temperature': int(values[3].replace('°C', '')),
-            'Fan Speed': int(values[4].replace(' %', '')),
-            'Power Draw': float(values[5].replace(' W', '')),
+            'Temperature': temperature,
+            'Fan Speed': fanspeed,
+            'Power Draw': power_draw,
             'Power Limit': float(values[6].replace(' W', '')),
             'Memory Used': int(values[7].split()[0]),
             'Memory Total': int(values[8].split()[0]),
@@ -125,49 +60,101 @@ def parse_gpu_info(output):
         gpu_list.append(gpu)
     return gpu_list
 
-def find_peak_values(gpu_data, peak_values, timestamp):
-    print(gpu_data)
-    for gpu_info in gpu_data:
-        gpu_index = gpu_info['Index']
-        pw = gpu_info['Power Draw']
+def find_last_occurrence(data, value):
+    """
+    Encontra a última ocorrência de um valor em uma lista.
+    """
+    for i in range(len(data) - 1, -1, -1):
+        if data[i] == value:
+            return i
+    return None
 
-        metrics['Power Draw']['Hour'][gpu_index].append(pw)
+def find_peak_value(data, timestamps, positions):
+    """
+    Encontra o valor máximo e seu timestamp correspondente.
+    """
+    candidates = data[-positions:]
+    peak_value = max(candidates)
+    
+    peak_position = find_last_occurrence(data, peak_value)
+    corresponding_timestamp = timestamps[peak_position]
 
-        if len(metrics['Power Draw']['Hour'][gpu_index]) <= 3:
-            last_three_pw = metrics['Power Draw']['Hour'][gpu_index][-3:]
-            max_pw_hour = max(last_three_pw)
-            if max_pw_hour > peak_values[gpu_index]['Power Draw']['Value']:
-                peak_values[gpu_index]['Power Draw']['Value'] = max_pw_hour
-                peak_values[gpu_index]['Power Draw']['Time'] = timestamp
+    return peak_value, corresponding_timestamp
 
-    peak_values['LastUpdate'] = timestamp
+def process_gpu_data(gpu, max_length):
+    """
+    Processa os dados da GPU, mantendo um histórico de dados.
+    """
+    gpu_index = gpu['Index']
 
+    if gpu_index not in gpu_historic_data:
+        gpu_historic_data[gpu_index] = {
+            'temperature': [],
+            'fanspeed': [],
+            'power_draw': []
+        }
 
-def find_peak_values(gpu_data, peak_values, timestamp):
-    for gpu_info in gpu_data:
-        gpu_index = gpu_info['Index']
-        pw = gpu_info['Power Draw']
+    temperature_data = gpu_historic_data[gpu_index]['temperature']
+    fanspeed_data = gpu_historic_data[gpu_index]['fanspeed']
+    power_draw_data = gpu_historic_data[gpu_index]['power_draw']
 
-        metrics['Power Draw']['Hour'][gpu_index].append(pw)
+    temperature = gpu['Temperature']
+    fanspeed = gpu['Fan Speed']
+    power_draw = gpu['Power Draw']
 
-        if len(metrics['Power Draw']['Hour'][gpu_index]) >= 2:
-            last_three_pw = metrics['Power Draw']['Hour'][gpu_index][-2:]
-            max_pw_hour = max(last_three_pw)
-            if max_pw_hour > peak_values[gpu_index]['Power Draw']['Value']:
-                peak_values[gpu_index]['Power Draw']['Value'] = max_pw_hour
-                peak_values[gpu_index]['Power Draw']['Time'] = timestamp
+    temperature_data.append(temperature)
+    fanspeed_data.append(fanspeed)
+    power_draw_data.append(power_draw)
 
-    # Armazenar o último horário em que as informações foram atualizadas
-    peak_values['LastUpdate'] = timestamp
+    if len(timestamps) > max_length:
+        timestamps.pop(0)
+
+    if len(temperature_data) >= max_length:
+        temperature_data.pop(0)
+
+    if len(fanspeed_data) >= max_length:
+        fanspeed_data.pop(0)
+
+    if len(power_draw_data) >= max_length:
+        power_draw_data.pop(0)
+
+    # Encontra os valores máximos e seus timestamps correspondentes
+    peak_value_hour_temperature, timestamp_hour_temperature = find_peak_value(temperature_data, timestamps, 2)
+    peak_value_hour_fanspeed, timestamp_hour_fanspeed = find_peak_value(fanspeed_data, timestamps, 2)
+    peak_value_hour_power_draw, timestamp_hour_power_draw = find_peak_value(power_draw_data, timestamps, 2)
+
+    peak_value_day_temperature, timestamp_day_temperature = find_peak_value(temperature_data, timestamps, 5)
+    peak_value_day_fanspeed, timestamp_day_fanspeed = find_peak_value(fanspeed_data, timestamps, 5)
+    peak_value_day_power_draw, timestamp_day_power_draw = find_peak_value(power_draw_data, timestamps, 5)
+
+    peak_value_week_temperature, timestamp_week_temperature = find_peak_value(temperature_data, timestamps, 10)
+    peak_value_week_fanspeed, timestamp_week_fanspeed = find_peak_value(fanspeed_data, timestamps, 10)
+    peak_value_week_power_draw, timestamp_week_power_draw = find_peak_value(power_draw_data, timestamps, 10)
+
+    # Imprime os resultados
+    print("="*50)
+    print(f"GPU {gpu_index}:\n")
+    print("HOUR\n")
+    print(f"  Temperature: {peak_value_hour_temperature} (Timestamp: {timestamp_hour_temperature})")
+    print(f"  Fan speed: {peak_value_hour_fanspeed} (Timestamp: {timestamp_hour_fanspeed})")
+    print(f"  Power Draw: {peak_value_hour_power_draw} (Timestamp: {timestamp_hour_power_draw})\n")
+    print("DAY\n")
+    print(f"  Temperature: {peak_value_day_temperature} (Timestamp: {timestamp_day_temperature})")
+    print(f"  Fan speed: {peak_value_day_fanspeed} (Timestamp: {timestamp_day_fanspeed})")
+    print(f"  Power Draw: {peak_value_day_power_draw} (Timestamp: {timestamp_day_power_draw})\n")
+    print("WEEK\n")
+    print(f"  Temperature: {peak_value_week_temperature} (Timestamp: {timestamp_week_temperature})")
+    print(f"  Fan speed: {peak_value_week_fanspeed} (Timestamp: {timestamp_week_fanspeed})")
+    print(f"  Power Draw: {peak_value_week_power_draw} (Timestamp: {timestamp_week_power_draw})")
+    print()
+    print("="*50)
+
 if __name__ == "__main__":
+    # Loop principal para coletar e processar dados das GPUs
     while True:
-        timestamp, output = get_gpu_info()
-        if timestamp is not None and output is not None:
-            gpu_data = parse_gpu_info(output)
-            find_peak_values(gpu_data, peak_values_hour, timestamp)
-        
-        # Imprimir os picos de consumo de energia acumulados a cada 5 minutos
-        print_peak_values(peak_values_hour, 'Power Draw')
-        
-        # Aguardar 5 minutos
-        time.sleep(60)  # 300 segundos = 5 minutos
+        timestamp, gpu_info_output = get_gpu_info()
+        if timestamp and gpu_info_output:
+            gpu_data = parse_gpu_info(gpu_info_output)
+            for gpu in gpu_data:
+                process_gpu_data(gpu, max_length=10)
+        time.sleep(10)  # Aguarda 10 segundos
