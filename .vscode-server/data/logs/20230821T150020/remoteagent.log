@@ -1,0 +1,36 @@
+2023-08-21 15:00:20.270 [info] 
+
+
+
+
+2023-08-21 15:00:20.282 [info] Extension host agent started.
+2023-08-21 15:00:20.540 [info] [127.0.0.1][90c80634][ManagementConnection] New connection established.
+2023-08-21 15:00:20.563 [info] [127.0.0.1][e7a585bf][ExtensionHostConnection] New connection established.
+2023-08-21 15:00:20.856 [info] [127.0.0.1][e7a585bf][ExtensionHostConnection] <3897638> Launched Extension Host Process.
+2023-08-21 15:00:24.955 [error] CodeExpectedError: Could not find pty on pty host
+    at g.P (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:7542)
+    at g.updateTitle (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:28:2693)
+    at g.B.<computed> (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:27:22689)
+    at Object.call (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:17:4867)
+    at l.s (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:5150)
+    at l.q (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4661)
+    at i.value (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:15:4066)
+    at k.w (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:1902)
+    at k.fire (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:10:2119)
+    at process.X (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/platform/terminal/node/ptyHostMain.js:8:27134)
+    at process.emit (node:events:513:28)
+    at emit (node:internal/child_process:939:14)
+    at processTicksAndRejections (node:internal/process/task_queues:84:21)
+2023-08-21 15:05:20.285 [info] New EH opened, aborting shutdown
+2023-08-21 17:13:18.726 [info] [127.0.0.1][90c80634][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+2023-08-21 17:13:18.727 [error] Error: Throttler is disposed
+    at r.queue (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:13612)
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:15183
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:14822
+2023-08-21 17:13:18.729 [error] Error: Throttler is disposed
+    at r.queue (/home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:13612)
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:15183
+    at /home/ashiley/.vscode-server/bin/6c3e3dba23e8fadc360aed75ce363ba185c49794/out/vs/server/node/server.main.js:70:14822
+2023-08-21 17:13:18.749 [info] [127.0.0.1][e7a585bf][ExtensionHostConnection] <3897638> Extension Host Process exited with code: 0, signal: null.
+2023-08-21 17:13:18.750 [info] Last EH closed, waiting before shutting down
+2023-08-21 17:18:18.751 [info] Last EH closed, shutting down

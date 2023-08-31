@@ -1,0 +1,17 @@
+{
+    "notebook.diff.enablePreview": false,
+    "workbench.editorAssociations": {
+        "*.js": "default"
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Peacock",
+    "python.defaultInterpreterPath": "C:\\Users\\ashar\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+    "remote.SSH.remotePlatform": {
+        "motoz": "linux",
+        "sparta": "linux",
+        "motox": "linux"
+    }
+}
