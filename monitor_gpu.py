@@ -1,5 +1,5 @@
-import subprocess
 from datetime import datetime
+import subprocess
 import time
 
 # Dicionário para armazenar os dados históricos das GPUs
@@ -8,6 +8,24 @@ gpu_historic_data = {}
 # Lista para armazenar os timestamps
 timestamps = []
 
+# Lista para armazenar erros históricos
+gpu_historic_errors = []
+
+hour_errors = []
+day_errors = []
+week_errors = []
+
+def is_error_already_recorded(error_type, gpu_index):
+    """
+    Verifica se um erro já foi registrado com base no tipo de erro e índice da GPU.
+    """
+    for error in gpu_historic_errors:
+        if error[0] == error_type and error[2] == gpu_index:
+            return True
+    return False
+
+#Essa parte está comentada pois estamos usando a simulação para poder testar os erros.
+'''
 def get_gpu_info():
     """
     Obtém informações das GPUs usando o comando 'nvidia-smi'.
@@ -26,6 +44,25 @@ def get_gpu_info():
     except Exception as e:
         print("Error:", e)
         return None, None
+'''
+
+#Simulando a função que está comentada
+def get_gpu_info():
+    """
+    Simula a obtenção de informações das GPUs e retorna um timestamp e a saída simulada.
+    """
+    try:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        output = """0, NVIDIA RTX A6000, GPU-0472e0b4-22a5-992d-e99a-b924703a82f7, [Unknown Error], [Unknown Error], [Unknown Error], 300.00 W, 6 MiB, 49140 MiB
+1, NVIDIA RTX A6000, GPU-ec5ae7f5-28ec-d423-7a74-f1a00dd8f3ec, 32, [Unknown Error], 25.02 W, 300.00 W, 6 MiB, 49140 MiB
+2, NVIDIA RTX A6000, GPU-0857e97c-1ba2-bf16-fd11-b29740d305f6, [Unknown Error], 30 %, 15.47 W, 300.00 W, 6 MiB, 49140 MiB
+3, NVIDIA RTX A6000, GPU-d5f30760-8d84-ad72-4544-201d3476aaf0, 34, [Unknown Error],[Unknown Error], 300.00 W, 6 MiB, 49140 MiB
+4, NVIDIA RTX A6000, GPU-88d64245-6778-a3c6-ee0b-d11d8834a714, [Unknown Error], [Unknown Error], 26.83 W, 300.00 W, 6 MiB, 49140 MiB"""
+        timestamps.append(timestamp)
+        return timestamp, output
+    except Exception as e:
+        print("Error:", e)
+        return None, None
 
 def parse_gpu_info(output):
     """
@@ -36,15 +73,34 @@ def parse_gpu_info(output):
     for line in lines:
         values = line.split(', ')
         gpu_index = int(values[0])
-        
+
         try:
             temperature = int(values[3].replace('°C', ''))
-            fanspeed = int(values[4].replace(' %', ''))
-            power_draw = float(values[5].replace(' W', ''))
-        except ValueError:
-            print(f"Erro na GPU {gpu_index}")
+        except (IndexError, ValueError) as e:
+            error_type = "Temperature Conversion Error"
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            if not is_error_already_recorded(error_type, gpu_index):
+                gpu_historic_errors.append((error_type, timestamp, gpu_index))
+                temperature = -1
             continue
-        
+
+        try:
+            fanspeed = int(values[4].replace(' %', ''))
+        except (IndexError, ValueError) as e:
+            error_type = "Fan Speed Conversion Error"
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            if not is_error_already_recorded(error_type, gpu_index):
+                gpu_historic_errors.append((error_type, timestamp, gpu_index))
+            fanspeed =  -1
+        try:
+            power_draw = float(values[5].replace(' W', ''))
+        except (IndexError, ValueError) as e:
+            error_type = "Power Draw Conversion Error"
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            if not is_error_already_recorded(error_type, gpu_index):
+                gpu_historic_errors.append((error_type, timestamp, gpu_index))
+            power_draw = -1
+
         gpu = {
             'Index': gpu_index,
             'Name': values[1],
@@ -52,9 +108,7 @@ def parse_gpu_info(output):
             'Temperature': temperature,
             'Fan Speed': fanspeed,
             'Power Draw': power_draw,
-            'Power Limit': float(values[6].replace(' W', '')),
             'Memory Used': int(values[7].split()[0]),
-            'Memory Total': int(values[8].split()[0]),
             'Timestamp': None
         }
         gpu_list.append(gpu)
@@ -149,12 +203,84 @@ def process_gpu_data(gpu, max_length):
     print()
     print("="*50)
 
+def find_hour_errors(gpu_historic_errors, timestamps):
+    candidates_hour = timestamps[-2:]
+    hour_errors = []
+
+    for error in gpu_historic_errors:
+        if error[1] in candidates_hour:
+            hour_errors.append(error)
+
+    return hour_errors
+
+def find_day_errors(gpu_historic_errors, timestamps):
+    candidates_day = timestamps[-5:]
+    day_errors = []
+
+    for error in gpu_historic_errors:
+        if error[1] in candidates_day:
+            day_errors.append(error)
+
+    return day_errors
+
+def find_week_errors(gpu_historic_errors, timestamps):
+    candidates_week = timestamps[-10:]
+    week_errors = []
+
+    for error in gpu_historic_errors:
+        if error[1] in candidates_week:
+            week_errors.append(error)
+
+    return week_errors
+
+def print_errors(errors_array, time_frame):
+    print(f"LAST {time_frame} \n")
+
+    for error in errors_array:
+        error_type = error[0]
+        timestamp = error[1]
+        gpu_index = error[2]
+        print(f"  Error Type: {error_type}, Timestamp: {timestamp}, GPU Index: {gpu_index}")
+
+    print()
+
 if __name__ == "__main__":
-    # Loop principal para coletar e processar dados das GPUs
+    # Inicialize as listas antes do loop principal
+    hour_errors = []
+    day_errors = []
+    week_errors = []
+
     while True:
         timestamp, gpu_info_output = get_gpu_info()
         if timestamp and gpu_info_output:
             gpu_data = parse_gpu_info(gpu_info_output)
             for gpu in gpu_data:
                 process_gpu_data(gpu, max_length=10)
-        time.sleep(10)  # Aguarda 10 segundos
+
+            # Encontre e adicione os erros nas listas apropriadas
+            hour_errors = find_hour_errors(gpu_historic_errors, timestamps)
+            day_errors = find_day_errors(gpu_historic_errors, timestamps)
+            week_errors = find_week_errors(gpu_historic_errors, timestamps)
+            
+            # Imprima os erros para cada período de tempo
+            print_errors(hour_errors, "HOUR")
+            print_errors(day_errors, "DAY")
+            print_errors(week_errors, "WEEK")
+            print()
+
+            # Verifique se os erros não estão mais em nenhum dos períodos e remova-os do histórico
+            remaining_errors = []
+            for error in gpu_historic_errors:
+                if error not in hour_errors and error not in day_errors and error not in week_errors:
+                    continue
+                remaining_errors.append(error)
+            gpu_historic_errors = remaining_errors
+
+            #PRINTS SOMENTE PARA TESTE DO CODIGO!
+            print("hour --",hour_errors)
+            print("day --",day_errors)
+            print("week --",week_errors)
+            print()
+            print(gpu_historic_errors)
+            print(timestamps)
+        time.sleep(2)  # Aguarda 10 segundos
