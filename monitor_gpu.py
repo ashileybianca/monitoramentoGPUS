@@ -11,10 +11,6 @@ timestamps = []
 # Lista para armazenar erros históricos
 gpu_historic_errors = []
 
-hour_errors = []
-day_errors = []
-week_errors = []
-
 def is_error_already_recorded(error_type, gpu_index):
     """
     Verifica se um erro já foi registrado com base no tipo de erro e índice da GPU.
@@ -24,8 +20,6 @@ def is_error_already_recorded(error_type, gpu_index):
             return True
     return False
 
-#Essa parte está comentada pois estamos usando a simulação para poder testar os erros.
-'''
 def get_gpu_info():
     """
     Obtém informações das GPUs usando o comando 'nvidia-smi'.
@@ -41,28 +35,9 @@ def get_gpu_info():
         output = subprocess.check_output(command, universal_newlines=True)
         timestamps.append(timestamp)
         return timestamp, output
-    except Exception as e:
-        print("Error:", e)
-        return None, None
-'''
-
-#Simulando a função que está comentada
-def get_gpu_info():
-    """
-    Simula a obtenção de informações das GPUs e retorna um timestamp e a saída simulada.
-    """
-    try:
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        output = """0, NVIDIA RTX A6000, GPU-0472e0b4-22a5-992d-e99a-b924703a82f7, [Unknown Error], [Unknown Error], [Unknown Error], 300.00 W, 6 MiB, 49140 MiB
-1, NVIDIA RTX A6000, GPU-ec5ae7f5-28ec-d423-7a74-f1a00dd8f3ec, 32, [Unknown Error], 25.02 W, 300.00 W, 6 MiB, 49140 MiB
-2, NVIDIA RTX A6000, GPU-0857e97c-1ba2-bf16-fd11-b29740d305f6, [Unknown Error], 30 %, 15.47 W, 300.00 W, 6 MiB, 49140 MiB
-3, NVIDIA RTX A6000, GPU-d5f30760-8d84-ad72-4544-201d3476aaf0, 34, [Unknown Error],[Unknown Error], 300.00 W, 6 MiB, 49140 MiB
-4, NVIDIA RTX A6000, GPU-88d64245-6778-a3c6-ee0b-d11d8834a714, [Unknown Error], [Unknown Error], 26.83 W, 300.00 W, 6 MiB, 49140 MiB"""
-        timestamps.append(timestamp)
-        return timestamp, output
-    except Exception as e:
-        print("Error:", e)
-        return None, None
+    except subprocess.CalledProcessError as e:
+        with open(filename, 'a') as file:
+            file.write(f"Error executing 'nvidia-smi': {e}")
 
 def parse_gpu_info(output):
     """
@@ -173,38 +148,66 @@ def process_gpu_data(gpu, max_length):
         power_draw_data.pop(0)
 
     # Encontra os valores máximos e seus timestamps correspondentes
-    peak_value_hour_temperature, timestamp_hour_temperature = find_peak_value(temperature_data, timestamps, 2)
-    peak_value_hour_fanspeed, timestamp_hour_fanspeed = find_peak_value(fanspeed_data, timestamps, 2)
-    peak_value_hour_power_draw, timestamp_hour_power_draw = find_peak_value(power_draw_data, timestamps, 2)
+    peak_value_hour_temperature, timestamp_hour_temperature = find_peak_value(temperature_data, timestamps, POSITIONS_HOUR)
+    peak_value_hour_fanspeed, timestamp_hour_fanspeed = find_peak_value(fanspeed_data, timestamps, POSITIONS_HOUR)
+    peak_value_hour_power_draw, timestamp_hour_power_draw = find_peak_value(power_draw_data, timestamps, POSITIONS_HOUR)
 
-    peak_value_day_temperature, timestamp_day_temperature = find_peak_value(temperature_data, timestamps, 5)
-    peak_value_day_fanspeed, timestamp_day_fanspeed = find_peak_value(fanspeed_data, timestamps, 5)
-    peak_value_day_power_draw, timestamp_day_power_draw = find_peak_value(power_draw_data, timestamps, 5)
+    peak_value_day_temperature, timestamp_day_temperature = find_peak_value(temperature_data, timestamps, POSITIONS_DAY)
+    peak_value_day_fanspeed, timestamp_day_fanspeed = find_peak_value(fanspeed_data, timestamps, POSITIONS_DAY)
+    peak_value_day_power_draw, timestamp_day_power_draw = find_peak_value(power_draw_data, timestamps, POSITIONS_DAY)
 
-    peak_value_week_temperature, timestamp_week_temperature = find_peak_value(temperature_data, timestamps, 10)
-    peak_value_week_fanspeed, timestamp_week_fanspeed = find_peak_value(fanspeed_data, timestamps, 10)
-    peak_value_week_power_draw, timestamp_week_power_draw = find_peak_value(power_draw_data, timestamps, 10)
+    peak_value_week_temperature, timestamp_week_temperature = find_peak_value(temperature_data, timestamps, POSITIONS_WEEK)
+    peak_value_week_fanspeed, timestamp_week_fanspeed = find_peak_value(fanspeed_data, timestamps, POSITIONS_WEEK)
+    peak_value_week_power_draw, timestamp_week_power_draw = find_peak_value(power_draw_data, timestamps, POSITIONS_WEEK)
 
-    # Imprime os resultados
-    print("="*50)
-    print(f"GPU {gpu_index}:\n")
-    print("HOUR\n")
-    print(f"  Temperature: {peak_value_hour_temperature} (Timestamp: {timestamp_hour_temperature})")
-    print(f"  Fan speed: {peak_value_hour_fanspeed} (Timestamp: {timestamp_hour_fanspeed})")
-    print(f"  Power Draw: {peak_value_hour_power_draw} (Timestamp: {timestamp_hour_power_draw})\n")
-    print("DAY\n")
-    print(f"  Temperature: {peak_value_day_temperature} (Timestamp: {timestamp_day_temperature})")
-    print(f"  Fan speed: {peak_value_day_fanspeed} (Timestamp: {timestamp_day_fanspeed})")
-    print(f"  Power Draw: {peak_value_day_power_draw} (Timestamp: {timestamp_day_power_draw})\n")
-    print("WEEK\n")
-    print(f"  Temperature: {peak_value_week_temperature} (Timestamp: {timestamp_week_temperature})")
-    print(f"  Fan speed: {peak_value_week_fanspeed} (Timestamp: {timestamp_week_fanspeed})")
-    print(f"  Power Draw: {peak_value_week_power_draw} (Timestamp: {timestamp_week_power_draw})")
-    print()
-    print("="*50)
+    all_info = "\n"+"=" * 50 + "\n"
+    all_info += f"GPU {gpu_index}:\n"
+    all_info += "\nHOUR\n"
+    all_info += f"  Temperature: {peak_value_hour_temperature} (Timestamp: {timestamp_hour_temperature})\n"
+    all_info += f"  Fan speed: {peak_value_hour_fanspeed} (Timestamp: {timestamp_hour_fanspeed})\n"
+    all_info += f"  Power Draw: {peak_value_hour_power_draw} (Timestamp: {timestamp_hour_power_draw})\n"
+    all_info += "\nDAY\n"
+    all_info += f"  Temperature: {peak_value_day_temperature} (Timestamp: {timestamp_day_temperature})\n"
+    all_info += f"  Fan speed: {peak_value_day_fanspeed} (Timestamp: {timestamp_day_fanspeed})\n"
+    all_info += f"  Power Draw: {peak_value_day_power_draw} (Timestamp: {timestamp_day_power_draw})\n"
+    all_info += "\nWEEK\n"
+    all_info += f"  Temperature: {peak_value_week_temperature} (Timestamp: {timestamp_week_temperature})\n"
+    all_info += f"  Fan speed: {peak_value_week_fanspeed} (Timestamp: {timestamp_week_fanspeed})\n"
+    all_info += f"  Power Draw: {peak_value_week_power_draw} (Timestamp: {timestamp_week_power_draw})\n"
+
+    # Escreva as informações no arquivo de texto
+    with open(filename, 'a') as file:
+        file.write(all_info)
+
+
+def call_find_errors(gpu_historic_errors, hour_errors, day_errors):
+    with open(filename, 'a') as file:
+        file.write("\n"+"=" * 50 + "\n")
+        file.write("ERRORS FOUND:\n\n")
+
+    if len(hour_errors) == 0:
+        with open(filename, 'a') as file:
+            file.write("No errors found in the last hour.\n")
+    else:
+        print_errors(hour_errors, "HOUR")
+
+    if len(day_errors) == 0:
+        with open(filename, 'a') as file:
+            file.write("No errors found in the last day.\n")
+    else:
+        print_errors(day_errors, "DAY")
+
+    if len(gpu_historic_errors) == 0:
+        with open(filename, 'a') as file:
+            file.write("No errors found in the last week.\n")
+        return
+    else:
+        print_errors(week_errors, "WEEK")
+
+#Encontrando os erros de cada período:
 
 def find_hour_errors(gpu_historic_errors, timestamps):
-    candidates_hour = timestamps[-2:]
+    candidates_hour = timestamps[-POSITIONS_HOUR:]
     hour_errors = []
 
     for error in gpu_historic_errors:
@@ -214,7 +217,7 @@ def find_hour_errors(gpu_historic_errors, timestamps):
     return hour_errors
 
 def find_day_errors(gpu_historic_errors, timestamps):
-    candidates_day = timestamps[-5:]
+    candidates_day = timestamps[-POSITIONS_DAY:]
     day_errors = []
 
     for error in gpu_historic_errors:
@@ -224,7 +227,7 @@ def find_day_errors(gpu_historic_errors, timestamps):
     return day_errors
 
 def find_week_errors(gpu_historic_errors, timestamps):
-    candidates_week = timestamps[-10:]
+    candidates_week = timestamps[-POSITIONS_WEEK:]
     week_errors = []
 
     for error in gpu_historic_errors:
@@ -234,53 +237,51 @@ def find_week_errors(gpu_historic_errors, timestamps):
     return week_errors
 
 def print_errors(errors_array, time_frame):
-    print(f"LAST {time_frame} \n")
+    with open(filename, 'a') as file:
+        file.write(f"LAST {time_frame}\n")
 
-    for error in errors_array:
-        error_type = error[0]
-        timestamp = error[1]
-        gpu_index = error[2]
-        print(f"  Error Type: {error_type}, Timestamp: {timestamp}, GPU Index: {gpu_index}")
-
-    print()
+        for error in errors_array:
+            error_type = error[0]
+            timestamp = error[1]
+            gpu_index = error[2]
+            file.write(f"  GPU Index: {gpu_index}, Error Type: {error_type}, Timestamp: {timestamp}\n")
 
 if __name__ == "__main__":
-    # Inicialize as listas antes do loop principal
+
+    POSITIONS_WEEK = 2017 # Quantidade de vezes que coletamos informações em uma semana
+    POSITIONS_DAY = 289 # Quantidade de vezes que coletamos informações em um dia 
+    POSITIONS_HOUR = 13 # Quantidade de vezes que coletamos informações em uma hora
+
     hour_errors = []
     day_errors = []
     week_errors = []
 
+    filename = "gpu_info.txt"
+
     while True:
+
+        with open(filename, 'w') as file:
+            pass
+
         timestamp, gpu_info_output = get_gpu_info()
         if timestamp and gpu_info_output:
             gpu_data = parse_gpu_info(gpu_info_output)
             for gpu in gpu_data:
-                process_gpu_data(gpu, max_length=10)
+                process_gpu_data(gpu, max_length=POSITIONS_WEEK)
 
-            # Encontre e adicione os erros nas listas apropriadas
+            # Encontra e adiciona os erros nas listas 
             hour_errors = find_hour_errors(gpu_historic_errors, timestamps)
             day_errors = find_day_errors(gpu_historic_errors, timestamps)
             week_errors = find_week_errors(gpu_historic_errors, timestamps)
             
-            # Imprima os erros para cada período de tempo
-            print_errors(hour_errors, "HOUR")
-            print_errors(day_errors, "DAY")
-            print_errors(week_errors, "WEEK")
-            print()
+            # Imprime os erros para cada período de tempo
+            call_find_errors(gpu_historic_errors, hour_errors, day_errors)
 
-            # Verifique se os erros não estão mais em nenhum dos períodos e remova-os do histórico
             remaining_errors = []
             for error in gpu_historic_errors:
                 if error not in hour_errors and error not in day_errors and error not in week_errors:
                     continue
                 remaining_errors.append(error)
             gpu_historic_errors = remaining_errors
-
-            #PRINTS SOMENTE PARA TESTE DO CODIGO!
-            print("hour --",hour_errors)
-            print("day --",day_errors)
-            print("week --",week_errors)
-            print()
-            print(gpu_historic_errors)
-            print(timestamps)
-        time.sleep(2)  # Aguarda 10 segundos
+        
+        time.sleep(300)  #Coleta de 5 em 5 min
