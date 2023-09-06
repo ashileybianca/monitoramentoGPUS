@@ -11,15 +11,6 @@ timestamps = []
 # Lista para armazenar erros históricos
 gpu_historic_errors = []
 
-def is_error_already_recorded(error_type, gpu_index):
-    """
-    Verifica se um erro já foi registrado com base no tipo de erro e índice da GPU.
-    """
-    for error in gpu_historic_errors:
-        if error[0] == error_type and error[2] == gpu_index:
-            return True
-    return False
-
 def get_gpu_info():
     """
     Obtém informações das GPUs usando o comando 'nvidia-smi'.
@@ -39,6 +30,15 @@ def get_gpu_info():
         with open(filename, 'a') as file:
             file.write(f"Error executing 'nvidia-smi': {e}")
 
+def is_error_already_recorded(error_type, gpu_index):
+    """
+    Verifica se um erro já foi registrado com base no tipo de erro e índice da GPU.
+    """
+    for error in gpu_historic_errors:
+        if error[0] == error_type and error[2] == gpu_index:
+            return True
+    return False
+    
 def parse_gpu_info(output):
     """
     Analisa a saída do comando 'nvidia-smi' e retorna uma lista de dicionários com as informações das GPUs.
